@@ -38,12 +38,16 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button variant="hero" size="xl">
-            Start Learning
-          </Button>
-          <Button variant="heroOutline" size="xl">
-            See How It Works
-          </Button>
+          <Link to="/onboarding">
+            <Button variant="hero" size="xl">
+              Start Learning
+            </Button>
+          </Link>
+          <a href="#how-it-works">
+            <Button variant="heroOutline" size="xl">
+              See How It Works
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>
