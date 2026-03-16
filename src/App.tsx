@@ -12,6 +12,7 @@ import Learn from "./pages/Learn";
 import LessonDetail from "./pages/LessonDetail";
 import Practice from "./pages/Practice";
 import MiniGames from "./pages/MiniGames";
+import Leaderboard from "./pages/Leaderboard";
 import Community from "./pages/Community";
 import ProgressPage from "./pages/ProgressPage";
 import Profile from "./pages/Profile";
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/practice" element={<Practice />} />
             <Route path="/games" element={<MiniGames />} />
             <Route path="/community" element={<Community />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/progress" element={<ProgressPage />} />
             <Route path="/profile" element={<Profile />} />
           </Route>

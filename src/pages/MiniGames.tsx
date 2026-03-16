@@ -58,7 +58,6 @@ const MiniGames = () => {
   return (
     <div className="min-h-screen bg-background py-6 px-4 md:px-0">
       <div className="max-w-2xl mx-auto space-y-6">
-
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" onClick={() => game === "menu" ? navigate("/practice") : setGame("menu")}>
             <ChevronLeft className="w-6 h-6" />
@@ -80,7 +79,6 @@ const MiniGames = () => {
                   <div>
                     <p className="font-bold text-foreground">Ghi nhớ ký hiệu</p>
                     <p className="text-sm text-muted-foreground">Ghép cặp ký hiệu với ý nghĩa tương ứng</p>
-
                   </div>
                 </CardContent>
               </Card>
@@ -94,22 +92,6 @@ const MiniGames = () => {
                     <p className="font-bold text-foreground">Thử thách tốc độ</p>
                     <p className="text-sm text-muted-foreground">Đoán ký hiệu trong vòng 3 giây</p>
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Leaderboard */}
-              <h2 className="text-lg font-bold text-foreground pt-4">Bảng xếp hạng</h2>
-              <Card className="rounded-2xl">
-
-                <CardContent className="p-4 space-y-3">
-                  {leaderboard.map((user, i) => (
-                    <div key={user.name} className="flex items-center gap-3">
-                      <span className="text-sm font-bold text-muted-foreground w-5">{i + 1}</span>
-                      <span className="text-xl">{user.avatar}</span>
-                      <span className="flex-1 font-semibold text-foreground text-sm">{user.name}</span>
-                      <span className="text-sm font-bold text-primary">{user.score}</span>
-                    </div>
-                  ))}
                 </CardContent>
               </Card>
             </motion.div>

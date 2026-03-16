@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Home, BookOpen, Gamepad2, Users, User } from "lucide-react";
+import { Home, BookOpen, Gamepad2, Users, User, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const items = [
@@ -7,6 +7,7 @@ const items = [
   { to: "/learn", icon: BookOpen, label: "Học tập" },
   { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
   { to: "/community", icon: Users, label: "Cộng đồng" },
+  { to: "/leaderboard", icon: Trophy, label: "BXH" },
   { to: "/profile", icon: User, label: "Cá nhân" },
 ];
 

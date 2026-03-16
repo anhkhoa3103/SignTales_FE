@@ -1,4 +1,4 @@
-import { Home, BookOpen, Gamepad2, Users, User, BarChart } from "lucide-react";
+import { Home, BookOpen, Gamepad2, Users, User, BarChart, Trophy } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -17,6 +17,7 @@ const navItems = [
   { to: "/learn", icon: BookOpen, label: "Học tập" },
   { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
   { to: "/community", icon: Users, label: "Cộng đồng" },
+  { to: "/leaderboard", icon: Trophy, label: "Bảng xếp hạng" },
   { to: "/progress", icon: BarChart, label: "Tiến độ" },
   { to: "/profile", icon: User, label: "Cá nhân" },
 ];
