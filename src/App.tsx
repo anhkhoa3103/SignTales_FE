@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import Learn from "./pages/Learn";
+import Learn from "./pages/Learn"; 
 import LessonDetail from "./pages/LessonDetail";
 import Practice from "./pages/Practice";
 import MiniGames from "./pages/MiniGames";
