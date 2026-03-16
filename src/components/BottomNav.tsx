@@ -3,11 +3,11 @@ import { Home, BookOpen, Gamepad2, Users, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const items = [
-  { to: "/dashboard", icon: Home, label: "Home" },
-  { to: "/learn", icon: BookOpen, label: "Learn" },
-  { to: "/practice", icon: Gamepad2, label: "Practice" },
-  { to: "/community", icon: Users, label: "Community" },
-  { to: "/profile", icon: User, label: "Profile" },
+  { to: "/dashboard", icon: Home, label: "Bài học" },
+  { to: "/learn", icon: BookOpen, label: "Học tập" },
+  { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
+  { to: "/community", icon: Users, label: "Cộng đồng" },
+  { to: "/profile", icon: User, label: "Cá nhân" },
 ];
 
 const BottomNav = () => {

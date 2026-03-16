@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
-import { Flame, Trophy, Clock, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronRight, Sparkles, BookOpen, Trophy, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
 
 const categories = [
-  { name: "Daily Life", emoji: "🏠", signs: 12, color: "from-primary to-orange-400" },
-  { name: "Emotions", emoji: "😊", signs: 8, color: "from-secondary to-purple-400" },
-  { name: "Friends", emoji: "🤝", signs: 10, color: "from-pink-500 to-rose-400" },
-  { name: "School", emoji: "📚", signs: 15, color: "from-emerald-500 to-green-400" },
-  { name: "Conversation", emoji: "💬", signs: 20, color: "from-blue-500 to-cyan-400" },
+  { name: "Cuộc sống hàng ngày", emoji: "🏠", signs: 12, color: "from-primary to-orange-400" },
+  { name: "Cảm xúc", emoji: "😊", signs: 8, color: "from-secondary to-purple-400" },
+  { name: "Bạn bè", emoji: "🤝", signs: 10, color: "from-pink-500 to-rose-400" },
+  { name: "Trường học", emoji: "📚", signs: 15, color: "from-emerald-500 to-green-400" },
+  { name: "Giao tiếp", emoji: "💬", signs: 20, color: "from-blue-500 to-cyan-400" },
 ];
 
 const fadeUp = {
@@ -20,110 +20,142 @@ const fadeUp = {
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-background section-padding py-6 md:pt-20">
-      <div className="max-w-2xl mx-auto space-y-8">
+    <div className="min-h-screen bg-background py-6 px-4 md:px-0">
+      <div className="max-w-5xl mx-auto space-y-10">
         {/* Header */}
         <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-extrabold text-foreground">Welcome back! 👋</h1>
-            <p className="text-muted-foreground font-body text-sm mt-1">Keep up the great work</p>
+            <h1 className="text-3xl font-extrabold text-foreground tracking-tight">Chào mừng quay trở lại! 👋</h1>
+            <p className="text-muted-foreground font-body text-base mt-1">Hôm nay bạn muốn học thêm ký hiệu nào?</p>
           </div>
-          <Link to="/profile">
-            <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
+          <Link to="/profile" className="hidden sm:block">
+            <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg hover:scale-105 transition-transform">
               S
             </div>
           </Link>
         </motion.div>
 
-        {/* Stats */}
-        <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.1 }} className="grid grid-cols-3 gap-3">
-          <Card className="bg-accent border-none">
-            <CardContent className="p-4 text-center">
-              <Flame className="w-6 h-6 text-primary mx-auto mb-1" />
-              <p className="text-2xl font-bold text-foreground">7</p>
-              <p className="text-xs text-muted-foreground">Day Streak</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-accent border-none">
-            <CardContent className="p-4 text-center">
-              <Trophy className="w-6 h-6 text-primary mx-auto mb-1" />
-              <p className="text-2xl font-bold text-foreground">24</p>
-              <p className="text-xs text-muted-foreground">Signs Learned</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-accent border-none">
-            <CardContent className="p-4 text-center">
-              <Clock className="w-6 h-6 text-primary mx-auto mb-1" />
-              <p className="text-2xl font-bold text-foreground">2.5h</p>
-              <p className="text-xs text-muted-foreground">Total Time</p>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+           {/* Continue Learning - Main Action */}
+          <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.1 }} className="md:col-span-2 space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-primary" />
+                Tiếp tục bài học
+              </h2>
+              <Link to="/learn" className="text-sm font-semibold text-primary hover:underline">Xem tất cả</Link>
+            </div>
+            <Link to="/learn/1">
+              <Card className="bg-card border-2 border-primary/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden rounded-3xl">
+                <CardContent className="p-0">
+                  <div className="flex flex-col sm:flex-row">
+                    <div className="sm:w-48 h-48 bg-primary/5 flex items-center justify-center text-7xl group-hover:scale-110 transition-transform duration-500">
+                      👋
+                    </div>
+                    <div className="flex-1 p-6 flex flex-col justify-center">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded-md">Cơ bản</span>
+                        <span className="text-sm font-medium text-muted-foreground">Bài 3 / 8</span>
+                      </div>
+                      <p className="text-2xl font-bold text-foreground mb-4">Chào hỏi cơ bản</p>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-xs font-bold text-muted-foreground">
+                          <span>Tiến độ</span>
+                          <span>37%</span>
+                        </div>
+                        <Progress value={37} className="h-2.5 bg-muted shadow-inner" />
+                      </div>
+                    </div>
+                    <div className="hidden sm:flex items-center px-6">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shadow-sm">
+                        <ChevronRight className="w-6 h-6" />
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </motion.div>
 
-        {/* Progress */}
-        <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.15 }}>
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-semibold text-foreground">Daily Goal</p>
-            <p className="text-xs text-muted-foreground">6/10 mins</p>
-          </div>
-          <Progress value={60} className="h-3 bg-muted" />
-        </motion.div>
-
-        {/* Continue Learning */}
-        <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }}>
-          <h2 className="text-lg font-bold text-foreground mb-3">Continue Learning</h2>
-          <Link to="/learn/1">
-            <Card className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
-              <CardContent className="p-5 flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center text-3xl">
-                  👋
+          {/* Daily Goal & Streak Summary */}
+          <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }} className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <Target className="w-5 h-5 text-primary" />
+              Mục tiêu hôm nay
+            </h2>
+            <Card className="rounded-3xl border-none bg-accent/50 shadow-inner">
+              <CardContent className="p-6 space-y-6">
+                <div className="flex items-center justify-between">
+                   <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                        <Trophy className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold">Điểm kinh nghiệm</p>
+                        <p className="text-2xl font-black text-primary">450 XP</p>
+                      </div>
+                   </div>
                 </div>
-                <div className="flex-1">
-                  <p className="font-bold text-foreground">Basic Greetings</p>
-                  <p className="text-sm text-muted-foreground">Lesson 3 of 8</p>
-                  <Progress value={37} className="h-1.5 mt-2 bg-muted" />
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs font-bold">
+                    <span className="text-foreground">Thời gian học</span>
+                    <span className="text-muted-foreground">6 / 10 phút</span>
+                  </div>
+                  <Progress value={60} className="h-3 bg-background" />
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <Button className="w-full rounded-xl font-bold shadow-md" variant="default">Nhận thưởng</Button>
               </CardContent>
             </Card>
-          </Link>
-        </motion.div>
+          </motion.div>
+        </div>
 
-        {/* Daily Sign */}
-        <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.25 }}>
-          <h2 className="text-lg font-bold text-foreground mb-3">
-            <Sparkles className="w-5 h-5 inline mr-1 text-primary" />
-            Daily Sign
-          </h2>
-          <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-none">
-            <CardContent className="p-6 text-center">
-              <p className="text-5xl mb-3">🤟</p>
-              <p className="text-xl font-bold text-foreground">I Love You</p>
-              <p className="text-sm text-muted-foreground mt-1">Extend thumb, index, and pinky finger</p>
-              <Button variant="default" size="sm" className="mt-4">
-                Learn This Sign
-              </Button>
-            </CardContent>
-          </Card>
-        </motion.div>
+        {/* Daily Sign & Categories */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Daily Sign */}
+          <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.3 }} className="lg:col-span-4 space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-yellow-500" />
+              Ký hiệu của ngày
+            </h2>
+            <Card className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 border-2 border-primary/5 rounded-3xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+              <CardContent className="p-8 text-center flex flex-col items-center">
+                <div className="w-24 h-24 rounded-3xl bg-background shadow-xl flex items-center justify-center text-6xl mb-6 ring-4 ring-primary/5">
+                  🤟
+                </div>
+                <p className="text-2xl font-black text-foreground">Tôi yêu bạn</p>
+                <p className="text-sm text-muted-foreground mt-2 font-body max-w-[200px]">
+                  Mở ngón cái, ngón trỏ và ngón út
+                </p>
+                <Button variant="outline" className="mt-6 w-full rounded-xl border-2 font-bold hover:bg-primary hover:text-white transition-all">
+                  Học ký hiệu này
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-        {/* Categories */}
-        <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.3 }}>
-          <h2 className="text-lg font-bold text-foreground mb-3">Lesson Categories</h2>
-          <div className="grid grid-cols-2 gap-3">
-            {categories.map((cat) => (
-              <Link key={cat.name} to="/learn">
-                <Card className="bg-card border hover:shadow-md transition-shadow cursor-pointer">
-                  <CardContent className="p-4">
-                    <p className="text-3xl mb-2">{cat.emoji}</p>
-                    <p className="font-bold text-foreground text-sm">{cat.name}</p>
-                    <p className="text-xs text-muted-foreground">{cat.signs} signs</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </motion.div>
+          {/* Categories */}
+          <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.4 }} className="lg:col-span-8 space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              Chủ đề bài học (Lessons)
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {categories.map((cat) => (
+                <Link key={cat.name} to="/learn">
+                  <Card className="bg-card border-2 border-transparent hover:border-primary/20 hover:shadow-md transition-all duration-300 cursor-pointer rounded-2xl h-full group">
+                    <CardContent className="p-5 flex flex-col items-center text-center">
+                      <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-4xl mb-3 group-hover:scale-110 transition-transform">
+                        {cat.emoji}
+                      </div>
+                      <p className="font-bold text-foreground text-sm line-clamp-1">{cat.name}</p>
+                      <p className="text-xs text-muted-foreground mt-1 font-medium">{cat.signs} ký hiệu</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
