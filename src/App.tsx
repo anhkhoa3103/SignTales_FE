@@ -17,6 +17,7 @@ import Leaderboard from "./pages/Leaderboard";
 import ProgressPage from "./pages/ProgressPage";
 import Profile from "./pages/Profile";
 import Onboarding from "./pages/Onboarding";
+import About from "./pages/About";
 import AppLayout from "./components/AppLayout";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,8 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/about" element={<About />} />
+
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/learn" element={<Learn />} />
@@ -43,6 +46,7 @@ const App = () => (
             <Route path="/progress" element={<ProgressPage />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

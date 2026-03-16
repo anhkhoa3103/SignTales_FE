@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const navItems = [
-  { label: "Trang chủ", href: "#home" },
-  { label: "Học tập", href: "#learn" },
-  { label: "Cộng đồng", href: "#community" },
-  { label: "Giới thiệu", href: "#about" },
+  { label: "Trang chủ", href: "/dashboard" },
+  { label: "Học tập", href: "/learn" },
+  { label: "Cộng đồng", href: "/explore" },
+  { label: "Giới thiệu", href: "/about" },
 ];
 
 const Navbar = () => {
@@ -17,20 +17,29 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-6xl mx-auto w-full px-6 md:px-8 lg:px-10 py-5 flex items-center justify-between">
-        <a href="#home" className="font-display text-2xl font-extrabold text-primary">
+        <Link to="/dashboard" className="font-display text-2xl font-extrabold text-primary">
           SignTales
-        </a>
+        </Link>
 
         {/* Desktop */}
         <ul className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <li key={item.href}>
-              <a
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                {item.label}
-              </a>
+              {item.href.startsWith("/") ? (
+                <Link
+                  to={item.href}
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+                >
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -58,13 +67,23 @@ const Navbar = () => {
               <ul className="flex flex-col gap-4">
                 {navItems.map((item) => (
                   <li key={item.href}>
-                    <a
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                    >
-                      {item.label}
-                    </a>
+                    {item.href.startsWith("/") ? (
+                      <Link
+                        to={item.href}
+                        onClick={() => setOpen(false)}
+                        className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
