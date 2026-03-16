@@ -14,7 +14,7 @@ const GlobalFactSection = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-            Over <span className="text-primary">70 million</span> people around the world use sign language to communicate.
+            Khoảng <span className="text-primary">70 triệu</span> người dùng ngôn ngữ ký hiệu trên toàn thế giới.
           </h2>
         </motion.div>
 

@@ -21,9 +21,9 @@ const ProductSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="text-4xl md:text-6xl font-extrabold text-foreground mb-6"
+          className="text-4xl md:text-6xl font-Arial font-bold text-foreground mb-6"
         >
-          A new way to learn Sign Language
+          Một cách mới để học ngôn ngữ ký hiệu.
         </motion.h2>
 
         <motion.p
@@ -32,7 +32,7 @@ const ProductSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-lg md:text-xl text-muted-foreground font-body"
         >
-          Short lessons, visual learning, and interactive practice.
+          Bài học ngắn, học tập trực quan, và luyện tập tương tác.
         </motion.p>
       </div>
     </section>

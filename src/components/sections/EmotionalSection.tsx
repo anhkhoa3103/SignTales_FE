@@ -18,9 +18,9 @@ const EmotionalSection = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1 }}
-        className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-extrabold text-primary-foreground text-center max-w-4xl px-6 leading-tight"
+        className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-Arial font-bold text-primary-foreground text-center max-w-4xl px-6 leading-tight"
       >
-        One gesture can connect <span className="text-primary">two worlds.</span>
+        Một cử chỉ có thể kết nối <span className="text-primary">hai thế giới.</span>
       </motion.h2>
     </section>
   );

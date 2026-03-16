@@ -28,7 +28,7 @@ const InsightSection = () => {
           className="order-1 md:order-2"
         >
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-            But very few people truly <span className="text-secondary">understand</span> them.
+            Nhưng rất ít người thực sự <span className="text-secondary">hiểu</span> chúng.
           </h2>
         </motion.div>
       </div>

@@ -10,9 +10,9 @@ const CuriositySection = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-foreground text-center px-6"
+        className="text-5xl md:text-7xl lg:text-8xl font-Helvetica font-bold text-foreground text-center px-6"
       >
-        Did you know?
+        Bạn có biết?
       </motion.h2>
     </section>
   );

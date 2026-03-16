@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <h3 className="font-display text-2xl font-extrabold text-primary mb-4">
-            SignSpeak
+            SignTales
           </h3>
           <p className="text-primary-foreground/60 font-body max-w-sm">
             Making sign language accessible, visual, and engaging for everyone. 

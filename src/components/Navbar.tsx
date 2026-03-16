@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 section-padding py-5 flex items-center justify-between bg-background/80 backdrop-blur-md border-b border-border/50">
       <a href="#" className="font-display text-2xl font-extrabold text-primary">
-        SignSpeak
+        SignTales
       </a>
 
       {/* Desktop */}
