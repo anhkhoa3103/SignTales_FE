@@ -6,7 +6,7 @@ const items = [
   { to: "/dashboard", icon: Home, label: "Trang Chính" },
   { to: "/learn", icon: BookOpen, label: "Học tập" },
   { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
-  { to: "/community", icon: Users, label: "Cộng đồng" },
+  { to: "/explore", icon: Users, label: "Khám phá" },
   { to: "/leaderboard", icon: Trophy, label: "BXH" },
   { to: "/profile", icon: User, label: "Cá nhân" },
 ];
