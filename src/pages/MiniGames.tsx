@@ -5,17 +5,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-// Memory game data
+// Dữ liệu trò chơi ghi nhớ
 const memoryPairs = [
-  { sign: "👋", meaning: "Hello" },
-  { sign: "🙏", meaning: "Thank you" },
-  { sign: "😔", meaning: "Sorry" },
-  { sign: "❤️", meaning: "Love" },
-  { sign: "👍", meaning: "Yes" },
-  { sign: "✋", meaning: "Goodbye" },
+  { sign: "👋", meaning: "Xin chào" },
+  { sign: "🙏", meaning: "Cảm ơn" },
+  { sign: "😔", meaning: "Xin lỗi" },
+  { sign: "❤️", meaning: "Yêu" },
+  { sign: "👍", meaning: "Có" },
+  { sign: "✋", meaning: "Tạm biệt" },
 ];
 
-type MemoryCard = { id: number; content: string; type: "sign" | "meaning"; pairId: number; flipped: boolean; matched: boolean };
+type MemoryCard = {
+  id: number;
+  content: string;
+  type: "sign" | "meaning";
+  pairId: number;
+  flipped: boolean;
+  matched: boolean;
+};
 
 function shuffleArray<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -27,11 +34,11 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 const speedQuizSigns = [
-  { sign: "👋", answer: "Hello", options: ["Hello", "Goodbye", "Sorry"] },
-  { sign: "🙏", answer: "Thank you", options: ["Please", "Thank you", "Help"] },
-  { sign: "❤️", answer: "Love", options: ["Love", "Happy", "Friend"] },
-  { sign: "👍", answer: "Yes", options: ["No", "Yes", "Maybe"] },
-  { sign: "😔", answer: "Sorry", options: ["Sad", "Sorry", "Angry"] },
+  { sign: "👋", answer: "Xin chào", options: ["Xin chào", "Tạm biệt", "Xin lỗi"] },
+  { sign: "🙏", answer: "Cảm ơn", options: ["Làm ơn", "Cảm ơn", "Giúp đỡ"] },
+  { sign: "❤️", answer: "Yêu", options: ["Yêu", "Vui", "Bạn bè"] },
+  { sign: "👍", answer: "Có", options: ["Không", "Có", "Có thể"] },
+  { sign: "😔", answer: "Xin lỗi", options: ["Buồn", "Xin lỗi", "Tức giận"] },
 ];
 
 const leaderboard = [
@@ -39,7 +46,7 @@ const leaderboard = [
   { name: "Maya", score: 920, avatar: "👩" },
   { name: "Jordan", score: 850, avatar: "🧑‍🦱" },
   { name: "Sam", score: 800, avatar: "👨" },
-  { name: "You", score: 0, avatar: "⭐" },
+  { name: "Bạn", score: 0, avatar: "⭐" },
 ];
 
 const MiniGames = () => {
@@ -49,21 +56,27 @@ const MiniGames = () => {
     <div className="min-h-screen bg-background section-padding py-6 md:pt-20">
       <div className="max-w-2xl mx-auto space-y-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-2xl font-extrabold text-foreground">Mini Games</h1>
-          <p className="text-muted-foreground font-body text-sm mt-1">Learn through play</p>
+          <h1 className="text-2xl font-extrabold text-foreground">Trò chơi mini</h1>
+          <p className="text-muted-foreground font-body text-sm mt-1">Học thông qua vui chơi</p>
         </motion.div>
 
         <AnimatePresence mode="wait">
           {game === "menu" && (
-            <motion.div key="menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
+            <motion.div
+              key="menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="space-y-4"
+            >
               <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setGame("memory")}>
                 <CardContent className="p-6 flex items-center gap-4">
                   <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center">
                     <Gamepad2 className="w-7 h-7 text-primary-foreground" />
                   </div>
                   <div>
-                    <p className="font-bold text-foreground">Sign Memory Game</p>
-                    <p className="text-sm text-muted-foreground">Match signs with their meanings</p>
+                    <p className="font-bold text-foreground">Trò chơi ghi nhớ ký hiệu</p>
+                    <p className="text-sm text-muted-foreground">Ghép ký hiệu với ý nghĩa của chúng</p>
                   </div>
                 </CardContent>
               </Card>
@@ -74,14 +87,14 @@ const MiniGames = () => {
                     <Zap className="w-7 h-7 text-secondary-foreground" />
                   </div>
                   <div>
-                    <p className="font-bold text-foreground">Speed Quiz</p>
-                    <p className="text-sm text-muted-foreground">Guess the sign within 3 seconds</p>
+                    <p className="font-bold text-foreground">Câu hỏi tốc độ</p>
+                    <p className="text-sm text-muted-foreground">Đoán ký hiệu trong vòng 3 giây</p>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Leaderboard */}
-              <h2 className="text-lg font-bold text-foreground pt-4">Leaderboard</h2>
+              {/* Bảng xếp hạng */}
+              <h2 className="text-lg font-bold text-foreground pt-4">Bảng xếp hạng</h2>
               <Card>
                 <CardContent className="p-4 space-y-3">
                   {leaderboard.map((user, i) => (
@@ -147,15 +160,15 @@ function MemoryGame({ onBack }: { onBack: () => void }) {
   return (
     <motion.div key="memory" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6">
       <div className="flex items-center justify-between">
-        <Button variant="ghost" size="sm" onClick={onBack}>← Back</Button>
-        <p className="text-sm font-semibold text-foreground">Matches: {matches}/{memoryPairs.length}</p>
+        <Button variant="ghost" size="sm" onClick={onBack}>← Quay lại</Button>
+        <p className="text-sm font-semibold text-foreground">Số cặp đúng: {matches}/{memoryPairs.length}</p>
       </div>
 
       {won ? (
         <div className="text-center py-12 space-y-4">
           <p className="text-6xl">🎉</p>
-          <h2 className="text-2xl font-extrabold text-foreground">You Won!</h2>
-          <Button onClick={onBack}>Back to Games</Button>
+          <h2 className="text-2xl font-extrabold text-foreground">Bạn thắng rồi!</h2>
+          <Button onClick={onBack}>Quay lại trò chơi</Button>
         </div>
       ) : (
         <div className="grid grid-cols-3 gap-3">
@@ -227,9 +240,11 @@ function SpeedQuiz({ onBack }: { onBack: () => void }) {
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12 space-y-4">
         <p className="text-6xl">⚡</p>
-        <h2 className="text-2xl font-extrabold text-foreground">Speed Quiz Done!</h2>
-        <p className="text-lg text-muted-foreground">Score: <span className="text-primary font-bold">{score}</span></p>
-        <Button onClick={onBack}>Back to Games</Button>
+        <h2 className="text-2xl font-extrabold text-foreground">Hoàn thành câu hỏi tốc độ!</h2>
+        <p className="text-lg text-muted-foreground">
+          Điểm số: <span className="text-primary font-bold">{score}</span>
+        </p>
+        <Button onClick={onBack}>Quay lại trò chơi</Button>
       </motion.div>
     );
   }
@@ -237,8 +252,8 @@ function SpeedQuiz({ onBack }: { onBack: () => void }) {
   return (
     <motion.div key="speed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6">
       <div className="flex items-center justify-between">
-        <Button variant="ghost" size="sm" onClick={onBack}>← Back</Button>
-        <p className="text-sm font-semibold text-primary">Score: {score}</p>
+        <Button variant="ghost" size="sm" onClick={onBack}>← Quay lại</Button>
+        <p className="text-sm font-semibold text-primary">Điểm: {score}</p>
       </div>
 
       <div className="text-center">
@@ -250,13 +265,15 @@ function SpeedQuiz({ onBack }: { onBack: () => void }) {
         >
           {q.sign}
         </motion.div>
-        <div className={cn(
-          "text-4xl font-extrabold",
-          timer <= 1 ? "text-destructive" : "text-foreground"
-        )}>
+        <div
+          className={cn(
+            "text-4xl font-extrabold",
+            timer <= 1 ? "text-destructive" : "text-foreground"
+          )}
+        >
           {timer}
         </div>
-        <p className="text-sm text-muted-foreground mt-1">seconds left</p>
+        <p className="text-sm text-muted-foreground mt-1">giây còn lại</p>
       </div>
 
       <div className="space-y-3">

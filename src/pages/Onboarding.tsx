@@ -7,28 +7,28 @@ import { cn } from "@/lib/utils";
 
 const steps = [
   {
-    question: "Why do you want to learn sign language?",
+    question: "Tại sao bạn muốn học ngôn ngữ ký hiệu?",
     options: [
-      { label: "Curiosity", emoji: "🤔" },
-      { label: "Communicate with deaf people", emoji: "🤝" },
-      { label: "For school", emoji: "📚" },
-      { label: "Just for fun", emoji: "🎉" },
+      { label: "Tò mò", emoji: "🤔" },
+      { label: "Giao tiếp với người khiếm thính", emoji: "🤝" },
+      { label: "Phục vụ việc học", emoji: "📚" },
+      { label: "Chỉ để giải trí", emoji: "🎉" },
     ],
   },
   {
-    question: "What is your level?",
+    question: "Trình độ của bạn hiện tại là gì?",
     options: [
-      { label: "Beginner", emoji: "🌱" },
-      { label: "Know a few signs", emoji: "✌️" },
-      { label: "Intermediate", emoji: "💪" },
+      { label: "Người mới bắt đầu", emoji: "🌱" },
+      { label: "Biết một vài ký hiệu", emoji: "✌️" },
+      { label: "Trung cấp", emoji: "💪" },
     ],
   },
   {
-    question: "Daily learning goal?",
+    question: "Mục tiêu học mỗi ngày của bạn là gì?",
     options: [
-      { label: "5 minutes per day", emoji: "⏱️" },
-      { label: "10 minutes per day", emoji: "⏰" },
-      { label: "Casual learning", emoji: "😎" },
+      { label: "5 phút mỗi ngày", emoji: "⏱️" },
+      { label: "10 phút mỗi ngày", emoji: "⏰" },
+      { label: "Học thoải mái", emoji: "😎" },
     ],
   },
 ];
@@ -57,7 +57,7 @@ const Onboarding = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center section-padding">
       <div className="max-w-md w-full space-y-8">
-        {/* Progress */}
+        {/* Thanh tiến trình */}
         <div className="flex gap-2">
           {steps.map((_, i) => (
             <div
@@ -80,7 +80,9 @@ const Onboarding = () => {
             className="space-y-6"
           >
             <div className="text-center">
-              <p className="text-sm text-muted-foreground mb-2">Step {step + 1} of {steps.length}</p>
+              <p className="text-sm text-muted-foreground mb-2">
+                Bước {step + 1} / {steps.length}
+              </p>
               <h1 className="text-2xl font-extrabold text-foreground">{s.question}</h1>
             </div>
 
@@ -110,7 +112,7 @@ const Onboarding = () => {
               className="w-full"
               size="lg"
             >
-              {step < steps.length - 1 ? "Continue" : "Start Learning"}
+              {step < steps.length - 1 ? "Tiếp tục" : "Bắt đầu học"}
             </Button>
           </motion.div>
         </AnimatePresence>
