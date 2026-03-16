@@ -6,17 +6,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 
-// Memory game data
+// Dữ liệu trò chơi ghi nhớ
 const memoryPairs = [
   { sign: "👋", meaning: "Xin chào" },
   { sign: "🙏", meaning: "Cảm ơn" },
   { sign: "😔", meaning: "Xin lỗi" },
   { sign: "❤️", meaning: "Yêu" },
   { sign: "👍", meaning: "Đúng" },
+
   { sign: "✋", meaning: "Tạm biệt" },
 ];
 
-type MemoryCard = { id: number; content: string; type: "sign" | "meaning"; pairId: number; flipped: boolean; matched: boolean };
+type MemoryCard = {
+  id: number;
+  content: string;
+  type: "sign" | "meaning";
+  pairId: number;
+  flipped: boolean;
+  matched: boolean;
+};
 
 function shuffleArray<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -50,6 +58,7 @@ const MiniGames = () => {
   return (
     <div className="min-h-screen bg-background py-6 px-4 md:px-0">
       <div className="max-w-2xl mx-auto space-y-6">
+
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" onClick={() => game === "menu" ? navigate("/practice") : setGame("menu")}>
             <ChevronLeft className="w-6 h-6" />
@@ -71,6 +80,7 @@ const MiniGames = () => {
                   <div>
                     <p className="font-bold text-foreground">Ghi nhớ ký hiệu</p>
                     <p className="text-sm text-muted-foreground">Ghép cặp ký hiệu với ý nghĩa tương ứng</p>
+
                   </div>
                 </CardContent>
               </Card>
@@ -90,6 +100,7 @@ const MiniGames = () => {
               {/* Leaderboard */}
               <h2 className="text-lg font-bold text-foreground pt-4">Bảng xếp hạng</h2>
               <Card className="rounded-2xl">
+
                 <CardContent className="p-4 space-y-3">
                   {leaderboard.map((user, i) => (
                     <div key={user.name} className="flex items-center gap-3">
@@ -156,6 +167,7 @@ function MemoryGame({ onBack }: { onBack: () => void }) {
       <div className="flex items-center justify-between bg-muted/30 p-4 rounded-xl">
         <p className="text-sm font-bold text-foreground">Số cặp đã ghép: {matches}/{memoryPairs.length}</p>
         <Button variant="ghost" size="sm" onClick={onBack} className="font-bold">Thoát</Button>
+
       </div>
 
       {won ? (
@@ -163,6 +175,7 @@ function MemoryGame({ onBack }: { onBack: () => void }) {
           <p className="text-6xl animate-bounce">🎉</p>
           <h2 className="text-2xl font-extrabold text-foreground">Tuyệt vời! Bạn đã thắng</h2>
           <Button onClick={onBack} className="rounded-xl font-bold px-8">Quay lại</Button>
+
         </div>
       ) : (
         <div className="grid grid-cols-3 gap-3">
