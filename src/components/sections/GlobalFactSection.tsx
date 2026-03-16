@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import signingPerson from "@/assets/signing-person.jpg";
-
+import signingVideo from "@/assets/7625976879343.mp4";
 const GlobalFactSection = () => {
   const { ref, isInView } = useScrollReveal(0.3);
 
@@ -24,11 +24,14 @@ const GlobalFactSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="rounded-3xl overflow-hidden shadow-lg"
         >
-          <img
-            src={signingPerson}
-            alt="Person signing"
-            className="w-full h-[400px] md:h-[500px] object-cover"
-          />
+          <video
+            src={signingVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-[600px] md:h-[700px] lg:h-[800px] object-cover"
+          ></video>
         </motion.div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import twoSigning from "@/assets/two-signing.jpg";
-
+import signingVideo from "@/assets/7627744746597.mp4";
 const InsightSection = () => {
   const { ref, isInView } = useScrollReveal(0.3);
 
@@ -14,11 +14,14 @@ const InsightSection = () => {
           transition={{ duration: 0.8 }}
           className="rounded-3xl overflow-hidden shadow-lg order-2 md:order-1"
         >
-          <img
-            src={twoSigning}
-            alt="Two people communicating with sign language"
-            className="w-full h-[400px] md:h-[500px] object-cover"
-          />
+          <video
+            src={signingVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-[600px] md:h-[700px] lg:h-[800px] object-cover"
+          ></video>
         </motion.div>
 
         <motion.div

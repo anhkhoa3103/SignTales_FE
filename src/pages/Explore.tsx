@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Search, 
-  PlayCircle, 
-  Newspaper, 
-  Lightbulb, 
-  MessageSquare, 
-  Heart, 
-  Share2, 
+import {
+  Search,
+  PlayCircle,
+  Newspaper,
+  Lightbulb,
+  MessageSquare,
+  Heart,
+  Share2,
   Bookmark,
   ChevronRight,
   X
@@ -17,14 +17,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import ShortVideo from "@/components/VideoItem";
 const shortVideos = [
   { id: 5, title: "Tự hào Việt Nam", views: "10.5k", thumbnail: "🇻🇳", author: "SignTales", video: "/Short Video/vnam.mp4" },
   { id: 6, title: "Chào hỏi cơ bản", views: "5.2k", thumbnail: "👋", author: "Học cùng An", video: "/Short Video/hello.mp4" },
-  { id: 1, title: "Ký hiệu 'Cảm ơn'", views: "1.2k", thumbnail: "👋", author: "Học cùng An" },
-  { id: 2, title: "Tên bảng chữ cái", views: "850", thumbnail: "🤟", author: "SignTales Team" },
-  { id: 3, title: "Hỏi thăm sức khỏe", views: "2.1k", thumbnail: "😊", author: "Minh Trang" },
-  { id: 4, title: "Số đếm 1-10", views: "3.4k", thumbnail: "🔢", author: "Thầy Bình" },
+  { id: 1, title: "Cảm ơn người đã thức cùng tôi", views: "1.2k", thumbnail: "👋", author: "Ki Wi", video: "/Short Video/tiktok_video_hd.mp4" },
+  { id: 2, title: "Tên bảng chữ cái", views: "850", thumbnail: "🤟", author: "SignTales Team", video: "/Short Video/tiktok_video_2.mp4" },
+  { id: 3, title: "Hỏi thăm sức khỏe", views: "2.1k", thumbnail: "😊", author: "Minh Trang", video: "/Short Video/Nice.mp4" },
+  { id: 4, title: "Số đếm 1-10", views: "3.4k", thumbnail: "🔢", author: "Thầy Bình", video: "/Short Video/2.mp4" },
 ];
 
 const newsAndBlogs = [
@@ -75,6 +75,7 @@ const Explore = () => {
   const [pausedVideos, setPausedVideos] = useState<Set<number>>(new Set());
   const [commentCounts, setCommentCounts] = useState<Record<number, number>>({});
   const [newComment, setNewComment] = useState("");
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const toggleLike = (id: number) => {
     setLikedShorts(prev => {
@@ -85,23 +86,28 @@ const Explore = () => {
     });
   };
 
-  const toggleVideoPlayback = (id: number, videoElement: HTMLVideoElement) => {
-    if (videoElement.paused) {
-      videoElement.play();
-      setPausedVideos(prev => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
-    } else {
-      videoElement.pause();
-      setPausedVideos(prev => {
-        const next = new Set(prev);
-        next.add(id);
-        return next;
-      });
-    }
-  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+
+        el.scrollBy({
+          left: e.deltaY,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
 
   const handleAddComment = (id: number) => {
     if (!newComment.trim()) return;
@@ -121,11 +127,11 @@ const Explore = () => {
             <h1 className="text-3xl font-extrabold text-foreground tracking-tight">Khám phá</h1>
             <p className="text-muted-foreground font-body">Tìm hiểu thêm về thế giới ngôn ngữ ký hiệu và cộng đồng.</p>
           </motion.div>
-          
+
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
-            <Input 
-              placeholder="Tìm kiếm video, tin tức, chia sẻ..." 
+            <Input
+              placeholder="Tìm kiếm video, tin tức, chia sẻ..."
               className="pl-12 h-14 rounded-2xl border-2 border-primary/5 focus:border-primary/20 bg-card text-lg shadow-sm"
             />
           </div>
@@ -151,18 +157,21 @@ const Explore = () => {
                   Xem thêm <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
               </div>
-              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+              <div
+                ref={scrollRef}
+                className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide"
+              >
                 {shortVideos.map((video) => (
-                  <Card 
-                    key={video.id} 
+                  <Card
+                    key={video.id}
                     onClick={() => setSelectedShort(video.id)}
                     className="min-w-[160px] md:min-w-[200px] group border-none bg-card hover:bg-muted/50 transition-all cursor-pointer overflow-hidden rounded-2xl shadow-sm flex-shrink-0"
                   >
                     <CardContent className="p-0">
-                      <div className="aspect-[9/16] bg-primary/10 flex items-center justify-center text-5xl relative overflow-hidden">
+                      <div className="aspect-[9/16] max-h-[420px] bg-primary/10 flex items-center justify-center text-5xl relative overflow-hidden">
                         {video.video ? (
-                          <video 
-                            src={video.video} 
+                          <video
+                            src={video.video}
                             className="w-full h-full object-cover"
                             muted
                             loop
@@ -269,16 +278,16 @@ const Explore = () => {
           <TabsContent value="videos" className="space-y-6 m-0">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {shortVideos.map((video) => (
-                <Card 
-                  key={video.id} 
+                <Card
+                  key={video.id}
                   onClick={() => setSelectedShort(video.id)}
                   className="group border-none bg-card hover:bg-muted/50 transition-all cursor-pointer overflow-hidden rounded-2xl shadow-sm"
                 >
                   <CardContent className="p-0">
                     <div className="aspect-[9/16] bg-primary/10 flex items-center justify-center text-5xl relative overflow-hidden">
                       {video.video ? (
-                        <video 
-                          src={video.video} 
+                        <video
+                          src={video.video}
                           className="w-full h-full object-cover"
                           muted
                           loop
@@ -319,57 +328,43 @@ const Explore = () => {
         {/* Full Screen Shorts Player */}
         <AnimatePresence>
           {selectedShort !== null && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-4"
             >
-              <button 
+              <button
                 onClick={() => setSelectedShort(null)}
                 className="absolute top-4 right-4 md:top-6 md:right-6 text-white z-[120] bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors backdrop-blur-md"
               >
                 <X className="w-6 h-6" />
               </button>
-              
+
               <div className="h-full md:h-[calc(100vh-2rem)] md:max-h-[800px] w-full max-w-[1000px] bg-black relative overflow-hidden md:rounded-[32px] shadow-2xl border-none md:border border-white/10 flex flex-col md:flex-row">
                 <div className="flex-1 h-full overflow-y-scroll snap-y snap-mandatory scrollbar-hide bg-black relative">
                   {shortVideos.filter(v => v.video).map((v) => (
-                    <div key={v.id} className="h-full w-full snap-start relative flex items-center justify-center group/video">
-                      <video 
-                        src={v.video} 
-                        className="h-full w-full object-cover md:object-contain cursor-pointer"
-                        autoPlay
-                        loop
-                        playsInline
-                        onClick={(e) => toggleVideoPlayback(v.id, e.currentTarget)}
-                      />
-                      
-                      {/* Play/Pause Overlay Indicator */}
-                      <AnimatePresence>
-                        {pausedVideos.has(v.id) && (
-                          <motion.div 
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.5 }}
-                            className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
-                          >
-                            <div className="w-20 h-20 rounded-full bg-black/40 flex items-center justify-center backdrop-blur-sm">
-                              <PlayCircle className="w-12 h-12 text-white fill-white/20" />
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                    <div
+                      key={v.id}
+                      className="h-full w-full snap-start relative flex items-center justify-center group/video"
+                    >
 
-                      {/* Mobile-only Overlay Info (Hidden on Desktop) */}
+                      <ShortVideo src={v.video} />
+
+                      {/* Mobile Overlay */}
                       <div className="md:hidden absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/40 to-transparent text-white text-left z-20">
                         <div className="flex items-center gap-3 mb-3">
                           <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-xl border border-white/10">👤</div>
                           <p className="font-bold text-lg">@{v.author}</p>
-                          <Badge className="bg-primary/20 text-primary border-primary/30 text-[10px]">Follow</Badge>
+                          <Badge className="bg-primary/20 text-primary border-primary/30 text-[10px]">
+                            Follow
+                          </Badge>
                         </div>
-                        <p className="text-sm font-medium opacity-90 leading-relaxed max-w-[80%]">{v.title}</p>
+                        <p className="text-sm font-medium opacity-90 leading-relaxed max-w-[80%]">
+                          {v.title}
+                        </p>
                       </div>
+
                     </div>
                   ))}
                 </div>
@@ -394,7 +389,7 @@ const Explore = () => {
                     {/* Stats */}
                     <div className="flex justify-around items-center py-4 border-y border-white/5 bg-white/5 rounded-2xl md:bg-transparent md:rounded-none md:border-x-0">
                       <div className="flex flex-col items-center gap-1.5">
-                        <button 
+                        <button
                           onClick={() => toggleLike(selectedShort)}
                           className={cn(
                             "p-3.5 rounded-full transition-all active:scale-125 bg-white/5 hover:bg-white/10 border border-white/5",
@@ -405,14 +400,14 @@ const Explore = () => {
                         </button>
                         <span className="text-[11px] font-bold text-zinc-400">{likedShorts.has(selectedShort) ? "1.2k" : "1.1k"}</span>
                       </div>
-                      
+
                       <div className="flex flex-col items-center gap-1.5">
                         <div className="p-3.5 bg-white/5 rounded-full hover:bg-white/10 text-zinc-400 cursor-pointer border border-white/5">
                           <MessageSquare className="w-6 h-6" />
                         </div>
                         <span className="text-[11px] font-bold text-zinc-400">{(commentCounts[selectedShort] || 0) + 85}</span>
                       </div>
-                      
+
                       <div className="flex flex-col items-center gap-1.5">
                         <div className="p-3.5 bg-white/5 rounded-full hover:bg-white/10 text-zinc-400 cursor-pointer border border-white/5">
                           <Share2 className="w-6 h-6" />
@@ -447,15 +442,15 @@ const Explore = () => {
                   {/* Comment Input at Bottom of Sidebar */}
                   <div className="p-4 bg-zinc-950 border-t border-white/10 md:p-6">
                     <div className="flex gap-3">
-                      <Input 
+                      <Input
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
-                        placeholder="Thêm bình luận..." 
+                        placeholder="Thêm bình luận..."
                         className="h-12 bg-white/5 border-white/5 text-white placeholder:text-zinc-600 text-sm rounded-2xl focus-visible:ring-primary/40 focus-visible:border-primary/40 transition-all"
                       />
-                      <Button 
+                      <Button
                         onClick={() => handleAddComment(selectedShort)}
-                        size="sm" 
+                        size="sm"
                         className="h-12 w-12 rounded-2xl p-0 bg-primary hover:bg-primary/90 transition-all shrink-0 shadow-lg shadow-primary/20"
                       >
                         <ChevronRight className="w-6 h-6" />

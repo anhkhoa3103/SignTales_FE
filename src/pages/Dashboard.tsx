@@ -27,7 +27,7 @@ const Dashboard = () => {
         <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-extrabold text-foreground tracking-tight">
-              Chào mừng quay trở lại! 👋
+              Chào mừng quay trở lại!
             </h1>
             <p className="text-muted-foreground font-body text-base mt-1">
               Cùng ôn tập và học thêm các ký hiệu mới nào.
