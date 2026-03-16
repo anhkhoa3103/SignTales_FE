@@ -7,13 +7,14 @@ import { Link, useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import helloSign from "@/assets/hello-sign.jpg";
 
-const lessonData: Record<string, { word: string; meaning: string; example: string; emoji: string; video?: string }> = {
+const lessonData: Record<string, { word: string; meaning: string; example: string; emoji: string; video?: string; description?: string }> = {
   "1": { 
     word: "Xin chào", 
     meaning: "Lời chào khi gặp ai đó", 
     example: "Xin chào! Rất vui được gặp bạn.", 
     emoji: "👋",
-    video: "/Tutorial video/7625741221388.mp4"
+    video: "/Tutorial video/7625741221388.mp4",
+    description: '"Xin chào" thường được thể hiện bằng cách giơ một hoặc hai tay lên (lòng bàn tay hướng về phía trước hoặc hơi nghiêng) và vẫy nhẹ, tương tự động tác vẫy tay chào thông thường, thường kèm theo nụ cười thân thiện.'
   },
   "2": { 
     word: "Cảm ơn", 
@@ -26,7 +27,8 @@ const lessonData: Record<string, { word: string; meaning: string; example: strin
     meaning: "Lời xin lỗi khi mắc lỗi", 
     example: "Mình xin lỗi vì đã đến muộn.", 
     emoji: "😔",
-    video: "/Tutorial video/7625741213414.mp4"
+    video: "/Tutorial video/7625741213414.mp4",
+    description: '"xin lỗi" thường được thể hiện bằng cách nắm nhẹ bàn tay lại, úp xuống, đặt trước ngực và xoay nhẹ nhàng. Ký hiệu này kết hợp với biểu cảm gương mặt chân thành (nhíu mày nhẹ, ánh mắt hối lỗi) để thể hiện sự hối hận và cầu mong được tha thứ.'
   },
 };
 
@@ -77,6 +79,7 @@ const LessonDetail = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
+            className="space-y-4"
           >
             <Card className="overflow-hidden border-none shadow-xl bg-muted aspect-square flex items-center justify-center">
               {lesson.video ? (
@@ -97,7 +100,22 @@ const LessonDetail = () => {
                 />
               )}
             </Card>
-            <div className="flex gap-2 mt-4 justify-center">
+
+            {/* Hướng dẫn thực hiện */}
+            {lesson.description && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-primary/5 border border-primary/10 rounded-2xl p-4"
+              >
+                <p className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Hướng dẫn thực hiện</p>
+                <p className="text-sm text-foreground font-body leading-relaxed italic">
+                  {lesson.description}
+                </p>
+              </motion.div>
+            )}
+
+            <div className="flex gap-2 mt-2 justify-center">
               <Button variant="outline" size="sm" className="gap-1" onClick={handleReplay}>
                 <RotateCcw className="w-4 h-4" /> Phát lại
               </Button>
