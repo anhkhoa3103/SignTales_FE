@@ -9,7 +9,7 @@ const EmotionalSection = () => {
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <img
         src={emotionalSign}
-        alt="Sign language communication"
+        alt="Giao tiếp bằng ngôn ngữ ký hiệu"
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 hero-overlay" />
@@ -20,7 +20,7 @@ const EmotionalSection = () => {
         transition={{ duration: 1 }}
         className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-Arial font-bold text-primary-foreground text-center max-w-4xl px-6 leading-tight"
       >
-        Một cử chỉ có thể kết nối <span className="text-primary">hai thế giới.</span>
+        Chỉ một cử chỉ cũng có thể <span className="text-primary">xóa nhòa khoảng cách</span>
       </motion.h2>
     </section>
   );

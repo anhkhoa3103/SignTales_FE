@@ -7,34 +7,34 @@ import { cn } from "@/lib/utils";
 const levels = [
   {
     level: 1,
-    title: "Basic Greetings",
+    title: "Chào hỏi cơ bản",
     lessons: [
-      { id: 1, word: "Hello", emoji: "👋", status: "completed" },
-      { id: 2, word: "Thank You", emoji: "🙏", status: "completed" },
-      { id: 3, word: "Sorry", emoji: "😔", status: "current" },
-      { id: 4, word: "Please", emoji: "🤲", status: "locked" },
-      { id: 5, word: "Goodbye", emoji: "✋", status: "locked" },
+      { id: 1, word: "Xin chào", emoji: "👋", status: "completed" },
+      { id: 2, word: "Cảm ơn", emoji: "🙏", status: "completed" },
+      { id: 3, word: "Xin lỗi", emoji: "😔", status: "current" },
+      { id: 4, word: "Làm ơn", emoji: "🤲", status: "locked" },
+      { id: 5, word: "Tạm biệt", emoji: "✋", status: "locked" },
     ],
   },
   {
     level: 2,
-    title: "Daily Expressions",
+    title: "Biểu đạt hằng ngày",
     lessons: [
-      { id: 6, word: "Yes", emoji: "👍", status: "locked" },
-      { id: 7, word: "No", emoji: "👎", status: "locked" },
-      { id: 8, word: "Help", emoji: "🆘", status: "locked" },
-      { id: 9, word: "Water", emoji: "💧", status: "locked" },
-      { id: 10, word: "Food", emoji: "🍕", status: "locked" },
+      { id: 6, word: "Có", emoji: "👍", status: "locked" },
+      { id: 7, word: "Không", emoji: "👎", status: "locked" },
+      { id: 8, word: "Giúp đỡ", emoji: "🆘", status: "locked" },
+      { id: 9, word: "Nước", emoji: "💧", status: "locked" },
+      { id: 10, word: "Thức ăn", emoji: "🍕", status: "locked" },
     ],
   },
   {
     level: 3,
-    title: "Emotions",
+    title: "Cảm xúc",
     lessons: [
-      { id: 11, word: "Happy", emoji: "😊", status: "locked" },
-      { id: 12, word: "Sad", emoji: "😢", status: "locked" },
-      { id: 13, word: "Angry", emoji: "😠", status: "locked" },
-      { id: 14, word: "Love", emoji: "❤️", status: "locked" },
+      { id: 11, word: "Vui", emoji: "😊", status: "locked" },
+      { id: 12, word: "Buồn", emoji: "😢", status: "locked" },
+      { id: 13, word: "Giận dữ", emoji: "😠", status: "locked" },
+      { id: 14, word: "Yêu", emoji: "❤️", status: "locked" },
     ],
   },
 ];
@@ -49,8 +49,8 @@ const Learn = () => {
     <div className="min-h-screen bg-background section-padding py-6 md:pt-20">
       <div className="max-w-2xl mx-auto space-y-8">
         <motion.div {...fadeUp} transition={{ duration: 0.5 }}>
-          <h1 className="text-2xl font-extrabold text-foreground">Learning Path</h1>
-          <p className="text-muted-foreground font-body text-sm mt-1">Master sign language step by step</p>
+          <h1 className="text-2xl font-extrabold text-foreground">Lộ trình học</h1>
+          <p className="text-muted-foreground font-body text-sm mt-1">Chinh phục ngôn ngữ ký hiệu từng bước một</p>
         </motion.div>
 
         {levels.map((level, li) => (
@@ -82,7 +82,11 @@ const Learn = () => {
                       <div className="flex-1">
                         <p className="font-semibold text-foreground">{lesson.word}</p>
                         <p className="text-xs text-muted-foreground">
-                          {lesson.status === "completed" ? "Completed" : lesson.status === "current" ? "In progress" : "Locked"}
+                          {lesson.status === "completed"
+                            ? "Đã hoàn thành"
+                            : lesson.status === "current"
+                            ? "Đang học"
+                            : "Đã khóa"}
                         </p>
                       </div>
                       {lesson.status === "completed" && <CheckCircle2 className="w-5 h-5 text-primary" />}

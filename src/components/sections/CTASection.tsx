@@ -14,7 +14,7 @@ const CTASection = () => {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-primary-foreground mb-4 leading-tight"
         >
-          The world speaks in many ways.
+          Thế giới giao tiếp theo rất nhiều cách.
         </motion.h2>
 
         <motion.p
@@ -23,7 +23,7 @@ const CTASection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl text-primary-foreground/80 mb-12 font-body"
         >
-          Learn one more today.
+          Hãy học thêm một cách giao tiếp ngay hôm nay.
         </motion.p>
 
         <motion.div
@@ -31,8 +31,12 @@ const CTASection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Button variant="heroOutline" size="xl" className="border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/20">
-            Start Learning Free
+          <Button
+            variant="heroOutline"
+            size="xl"
+            className="border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/20"
+          >
+            Bắt đầu học miễn phí
           </Button>
         </motion.div>
       </div>

@@ -2,62 +2,71 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-const navItems = ["Home", "Learn", "Community", "About"];
+const navItems = [
+  { label: "Trang chủ", href: "#home" },
+  { label: "Học tập", href: "#learn" },
+  { label: "Cộng đồng", href: "#community" },
+  { label: "Giới thiệu", href: "#about" },
+];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 section-padding py-5 flex items-center justify-between bg-background/80 backdrop-blur-md border-b border-border/50">
-      <a href="#" className="font-display text-2xl font-extrabold text-primary">
-        SignTales
-      </a>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      <div className="max-w-6xl mx-auto w-full px-6 md:px-8 lg:px-10 py-5 flex items-center justify-between">
+        <a href="#home" className="font-display text-2xl font-extrabold text-primary">
+          SignTales
+        </a>
 
-      {/* Desktop */}
-      <ul className="hidden md:flex items-center gap-8">
-        {navItems.map((item) => (
-          <li key={item}>
-            <a
-              href={`#${item.toLowerCase()}`}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
-            >
-              {item}
-            </a>
-          </li>
-        ))}
-      </ul>
+        {/* Desktop */}
+        <ul className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <a
+                href={item.href}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-      {/* Mobile toggle */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="md:hidden text-foreground"
-        aria-label="Toggle menu"
-      >
-        {open ? <X size={24} /> : <Menu size={24} />}
-      </button>
+        {/* Nút mở menu trên mobile */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden text-foreground"
+          aria-label="Bật/tắt menu"
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
 
-      {/* Mobile menu */}
+      {/* Menu mobile */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 bg-background border-b border-border section-padding py-6 md:hidden"
+            className="md:hidden border-t border-border bg-background"
           >
-            <ul className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <li key={item}>
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    onClick={() => setOpen(false)}
-                    className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="max-w-6xl mx-auto px-6 md:px-8 lg:px-10 py-6">
+              <ul className="flex flex-col gap-4">
+                {navItems.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

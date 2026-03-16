@@ -5,9 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 
 const challenges = [
-  { id: 1, title: 'Say "I Love You" in Sign Language', participants: 234, emoji: "🤟" },
-  { id: 2, title: 'Sign your favorite emotion', participants: 156, emoji: "😊" },
-  { id: 3, title: 'Spell your name in fingerspelling', participants: 89, emoji: "🤙" },
+  { id: 1, title: 'Ra dấu "Anh yêu em" bằng ngôn ngữ ký hiệu', participants: 234, emoji: "🤟" },
+  { id: 2, title: "Ra dấu cảm xúc yêu thích của bạn", participants: 156, emoji: "😊" },
+  { id: 3, title: "Đánh vần tên của bạn bằng bảng chữ cái ngón tay", participants: 89, emoji: "🤙" },
 ];
 
 const posts = [
@@ -15,8 +15,8 @@ const posts = [
     id: 1,
     user: "Maya",
     avatar: "👩",
-    time: "2h ago",
-    content: "Just learned how to sign 'Thank You'! This app makes it so easy 🙏",
+    time: "2 giờ trước",
+    content: 'Mình vừa học được cách ký hiệu "Cảm ơn"! Ứng dụng này giúp học dễ thật 🙏',
     likes: 24,
     comments: 5,
   },
@@ -24,8 +24,8 @@ const posts = [
     id: 2,
     user: "Jordan",
     avatar: "🧑‍🦱",
-    time: "5h ago",
-    content: "Day 14 streak! Can't believe how much I've learned. Who else is on a streak? 🔥",
+    time: "5 giờ trước",
+    content: "Chuỗi học ngày 14! Không thể tin là mình đã học được nhiều đến vậy. Còn ai đang giữ chuỗi không? 🔥",
     likes: 42,
     comments: 12,
   },
@@ -33,8 +33,8 @@ const posts = [
     id: 3,
     user: "Sam",
     avatar: "👨",
-    time: "1d ago",
-    content: "Had a real conversation using sign language today with a deaf coworker. Feeling proud! ❤️",
+    time: "1 ngày trước",
+    content: "Hôm nay mình đã có một cuộc trò chuyện thật sự bằng ngôn ngữ ký hiệu với một đồng nghiệp khiếm thính. Cảm thấy rất tự hào! ❤️",
     likes: 89,
     comments: 23,
   },
@@ -62,18 +62,18 @@ const Community = () => {
       <div className="max-w-2xl mx-auto space-y-6">
         <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-extrabold text-foreground">Community</h1>
-            <p className="text-muted-foreground font-body text-sm mt-1">Learn together, grow together</p>
+            <h1 className="text-2xl font-extrabold text-foreground">Cộng đồng</h1>
+            <p className="text-muted-foreground font-body text-sm mt-1">Cùng nhau học tập, cùng nhau phát triển</p>
           </div>
           <Button variant="default" size="sm" className="gap-1">
-            <Plus className="w-4 h-4" /> Post
+            <Plus className="w-4 h-4" /> Đăng bài
           </Button>
         </motion.div>
 
-        {/* Challenges */}
+        {/* Thử thách */}
         <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.1 }}>
           <h2 className="text-lg font-bold text-foreground mb-3">
-            <Trophy className="w-5 h-5 inline mr-1 text-primary" /> Active Challenges
+            <Trophy className="w-5 h-5 inline mr-1 text-primary" /> Thử thách đang diễn ra
           </h2>
           <div className="flex gap-3 overflow-x-auto pb-2 -mx-6 px-6">
             {challenges.map((ch) => (
@@ -81,9 +81,9 @@ const Community = () => {
                 <CardContent className="p-4">
                   <p className="text-3xl mb-2">{ch.emoji}</p>
                   <p className="font-bold text-foreground text-sm">{ch.title}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{ch.participants} participants</p>
+                  <p className="text-xs text-muted-foreground mt-1">{ch.participants} người tham gia</p>
                   <Button variant="outline" size="sm" className="mt-3 w-full text-xs">
-                    Join Challenge
+                    Tham gia thử thách
                   </Button>
                 </CardContent>
               </Card>
@@ -91,9 +91,9 @@ const Community = () => {
           </div>
         </motion.div>
 
-        {/* Feed */}
+        {/* Bảng tin */}
         <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }} className="space-y-4">
-          <h2 className="text-lg font-bold text-foreground">Community Feed</h2>
+          <h2 className="text-lg font-bold text-foreground">Bảng tin cộng đồng</h2>
           {posts.map((post) => (
             <Card key={post.id} className="border">
               <CardContent className="p-5 space-y-3">

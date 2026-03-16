@@ -7,9 +7,9 @@ import { Link, useParams } from "react-router-dom";
 import helloSign from "@/assets/hello-sign.jpg";
 
 const lessonData: Record<string, { word: string; meaning: string; example: string; emoji: string }> = {
-  "1": { word: "Hello", meaning: "Xin chào / Hi", example: "Hello! Nice to meet you.", emoji: "👋" },
-  "2": { word: "Thank You", meaning: "Cảm ơn / Thanks", example: "Thank you for helping me.", emoji: "🙏" },
-  "3": { word: "Sorry", meaning: "Xin lỗi / Apologies", example: "I'm sorry for being late.", emoji: "😔" },
+  "1": { word: "Xin chào", meaning: "Lời chào khi gặp ai đó", example: "Xin chào! Rất vui được gặp bạn.", emoji: "👋" },
+  "2": { word: "Cảm ơn", meaning: "Lời bày tỏ sự biết ơn", example: "Cảm ơn bạn đã giúp mình.", emoji: "🙏" },
+  "3": { word: "Xin lỗi", meaning: "Lời xin lỗi khi mắc lỗi", example: "Mình xin lỗi vì đã đến muộn.", emoji: "😔" },
 };
 
 const LessonDetail = () => {
@@ -19,7 +19,7 @@ const LessonDetail = () => {
   return (
     <div className="min-h-screen bg-background section-padding py-6 md:pt-20">
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
+        {/* Tiêu đề */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,13 +31,13 @@ const LessonDetail = () => {
             </Button>
           </Link>
           <div className="flex-1">
-            <p className="text-sm text-muted-foreground">Lesson {id}</p>
+            <p className="text-sm text-muted-foreground">Bài học {id}</p>
             <Progress value={50} className="h-2 mt-1 bg-muted" />
           </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Video / Image */}
+          {/* Video / Hình ảnh */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -46,24 +46,24 @@ const LessonDetail = () => {
             <Card className="overflow-hidden border-none shadow-lg">
               <img
                 src={helloSign}
-                alt={`Sign for ${lesson.word}`}
+                alt={`Ký hiệu cho từ ${lesson.word}`}
                 className="w-full aspect-square object-cover"
               />
             </Card>
             <div className="flex gap-2 mt-4 justify-center">
               <Button variant="outline" size="sm" className="gap-1">
-                <RotateCcw className="w-4 h-4" /> Replay
+                <RotateCcw className="w-4 h-4" /> Phát lại
               </Button>
               <Button variant="outline" size="sm" className="gap-1">
-                <Gauge className="w-4 h-4" /> Slow Motion
+                <Gauge className="w-4 h-4" /> Chuyển động chậm
               </Button>
               <Button variant="outline" size="sm" className="gap-1">
-                <Repeat className="w-4 h-4" /> Loop
+                <Repeat className="w-4 h-4" /> Lặp lại
               </Button>
             </div>
           </motion.div>
 
-          {/* Details */}
+          {/* Chi tiết */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -77,14 +77,14 @@ const LessonDetail = () => {
 
             <Card className="bg-accent border-none">
               <CardContent className="p-5">
-                <p className="text-sm font-semibold text-accent-foreground mb-1">Meaning</p>
+                <p className="text-sm font-semibold text-accent-foreground mb-1">Ý nghĩa</p>
                 <p className="text-foreground font-body">{lesson.meaning}</p>
               </CardContent>
             </Card>
 
             <Card className="bg-muted border-none">
               <CardContent className="p-5">
-                <p className="text-sm font-semibold text-foreground mb-1">Example</p>
+                <p className="text-sm font-semibold text-foreground mb-1">Ví dụ</p>
                 <p className="text-muted-foreground font-body italic">"{lesson.example}"</p>
               </CardContent>
             </Card>
@@ -92,12 +92,12 @@ const LessonDetail = () => {
             <div className="space-y-3 pt-4">
               <Link to="/practice">
                 <Button variant="default" size="lg" className="w-full">
-                  Practice This Sign
+                  Luyện tập ký hiệu này
                 </Button>
               </Link>
               <Link to={`/learn/${Number(id || 1) + 1}`}>
                 <Button variant="outline" size="lg" className="w-full gap-2 mt-2">
-                  Next Lesson <ChevronRight className="w-4 h-4" />
+                  Bài học tiếp theo <ChevronRight className="w-4 h-4" />
                 </Button>
               </Link>
             </div>
