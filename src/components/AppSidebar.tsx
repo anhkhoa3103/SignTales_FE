@@ -1,4 +1,3 @@
-import { Home, BookOpen, Gamepad2, Users, User, BarChart, Trophy } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -12,14 +11,22 @@ import {
   SidebarGroupLabel,
 } from "@/components/ui/sidebar";
 
+import homeIcon from "@/assets/home.png";
+import learnIcon from "@/assets/learn.png";
+import practiceIcon from "@/assets/practice.png";
+import exploreIcon from "@/assets/explore.png";
+import leaderboardIcon from "@/assets/leaderboard.png";
+import progressIcon from "@/assets/progress.png";
+import profileIcon from "@/assets/profile.png";
+
 const navItems = [
-  { to: "/dashboard", icon: Home, label: "Trang Chính" },
-  { to: "/learn", icon: BookOpen, label: "Học tập" },
-  { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
-  { to: "/explore", icon: Users, label: "Khám phá" },
-  { to: "/leaderboard", icon: Trophy, label: "Bảng xếp hạng" },
-  { to: "/progress", icon: BarChart, label: "Tiến độ" },
-  { to: "/profile", icon: User, label: "Cá nhân" },
+  { to: "/dashboard", icon: homeIcon, label: "Trang Chính" },
+  { to: "/learn", icon: learnIcon, label: "Học tập" },
+  { to: "/practice", icon: practiceIcon, label: "Luyện tập" },
+  { to: "/explore", icon: exploreIcon, label: "Khám phá" },
+  { to: "/leaderboard", icon: leaderboardIcon, label: "Bảng xếp hạng" },
+  { to: "/progress", icon: progressIcon, label: "Tiến độ" },
+  { to: "/profile", icon: profileIcon, label: "Cá nhân" },
 ];
 
 export function AppSidebar() {
@@ -28,18 +35,26 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r border-border/50">
       <SidebarHeader className="py-6 px-4">
-        <Link to="/" className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
+        <Link
+          to="/"
+          className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center"
+        >
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
             <span className="text-primary-foreground font-extrabold">S</span>
           </div>
+
           <span className="font-display text-xl font-extrabold text-primary group-data-[collapsible=icon]:hidden">
             SignTales
           </span>
         </Link>
       </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="group-data-[collapsible=icon]:hidden">Menu chính</SidebarGroupLabel>
+          <SidebarGroupLabel className="group-data-[collapsible=icon]:hidden">
+            Menu chính
+          </SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
@@ -51,7 +66,11 @@ export function AppSidebar() {
                     className="py-6"
                   >
                     <Link to={item.to} className="flex items-center gap-3">
-                      <item.icon className="w-5 h-5" />
+                      <img
+                        src={item.icon}
+                        alt={item.label}
+                        className="w-5 h-5 object-contain shrink-0"
+                      />
                       <span className="font-medium">{item.label}</span>
                     </Link>
                   </SidebarMenuButton>
