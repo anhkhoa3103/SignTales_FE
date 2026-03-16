@@ -13,10 +13,9 @@ import {
 } from "@/components/ui/sidebar";
 
 const navItems = [
-  { to: "/dashboard", icon: Home, label: "Bài học (Lesson)" },
+  { to: "/dashboard", icon: Home, label: "Trang Chính" },
   { to: "/learn", icon: BookOpen, label: "Học tập" },
   { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
-  { to: "/games", icon: Gamepad2, label: "Trò chơi" },
   { to: "/community", icon: Users, label: "Cộng đồng" },
   { to: "/progress", icon: BarChart, label: "Tiến độ" },
   { to: "/profile", icon: User, label: "Cá nhân" },

@@ -3,7 +3,7 @@ import { Home, BookOpen, Gamepad2, Users, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const items = [
-  { to: "/dashboard", icon: Home, label: "Bài học" },
+  { to: "/dashboard", icon: Home, label: "Trang Chính" },
   { to: "/learn", icon: BookOpen, label: "Học tập" },
   { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
   { to: "/community", icon: Users, label: "Cộng đồng" },

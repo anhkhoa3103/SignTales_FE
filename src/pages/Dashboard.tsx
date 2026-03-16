@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronRight, Sparkles, BookOpen, Trophy, Target } from "lucide-react";
+import { ChevronRight, Lightbulb, BookOpen, Trophy, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -26,7 +26,7 @@ const Dashboard = () => {
         <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-extrabold text-foreground tracking-tight">Chào mừng quay trở lại! 👋</h1>
-            <p className="text-muted-foreground font-body text-base mt-1">Hôm nay bạn muốn học thêm ký hiệu nào?</p>
+            <p className="text-muted-foreground font-body text-base mt-1">Cùng ôn tập và học thêm các ký hiệu mới nào.</p>
 
           </div>
           <Link to="/profile" className="hidden sm:block">
@@ -115,10 +115,10 @@ const Dashboard = () => {
           {/* Daily Sign */}
           <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.3 }} className="lg:col-span-4 space-y-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-yellow-500" />
-              Ký hiệu của ngày
+              <Lightbulb className="w-5 h-5 text-yellow-500" />
+              Ký hiệu hôm nay
             </h2>
-            <Card className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 border-2 border-primary/5 rounded-3xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+            <Card className="bg-accent/30 border-2 border-primary/10 rounded-3xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
               <CardContent className="p-8 text-center flex flex-col items-center">
                 <div className="w-24 h-24 rounded-3xl bg-background shadow-xl flex items-center justify-center text-6xl mb-6 ring-4 ring-primary/5">
                   🤟
@@ -138,7 +138,7 @@ const Dashboard = () => {
           <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.4 }} className="lg:col-span-8 space-y-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-primary" />
-              Chủ đề bài học (Lessons)
+              Chủ đề học tập
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {categories.map((cat) => (
