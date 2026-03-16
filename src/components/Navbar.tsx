@@ -5,26 +5,26 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const navItems = [
-  { label: "Trang chủ", href: "/" },
+  { label: "Trang chủ", href: "#home" },
   { label: "Học tập", href: "#learn" },
   { label: "Cộng đồng", href: "#community" },
-  { label: "Giới thiệu", href: "#about" }
+  { label: "Giới thiệu", href: "#about" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 section-padding py-5 flex items-center justify-between bg-background/80 backdrop-blur-md border-b border-border/50">
-      <Link to="/" className="font-display text-2xl font-extrabold text-primary">
-        SignTales
-      </Link>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      <div className="max-w-6xl mx-auto w-full px-6 md:px-8 lg:px-10 py-5 flex items-center justify-between">
+        <a href="#home" className="font-display text-2xl font-extrabold text-primary">
+          SignTales
+        </a>
 
-      {/* Desktop */}
-      <div className="hidden md:flex items-center gap-8">
-        <ul className="flex items-center gap-8">
+        {/* Desktop */}
+        <ul className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <li key={item.label}>
+            <li key={item.href}>
               <a
                 href={item.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
@@ -34,63 +34,41 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-3">
-          <Link to="/login">
-            <Button variant="ghost" size="sm">
-              Đăng nhập
-            </Button>
-          </Link>
-          <Link to="/signup">
-            <Button size="sm">
-              Đăng ký
-            </Button>
-          </Link>
-        </div>
-      </div>
 
-      {/* Mobile toggle */}
-      <div className="flex items-center gap-3 md:hidden">
-        <Link to="/login">
-          <Button variant="ghost" size="sm" className="px-3">
-            Đăng nhập
-          </Button>
-        </Link>
-        <Link to="/signup">
-          <Button size="sm" className="px-3">
-            Đăng ký
-          </Button>
-        </Link>
+        {/* Nút mở menu trên mobile */}
         <button
           onClick={() => setOpen(!open)}
-          className="text-foreground ml-1"
-          aria-label="Toggle menu"
+          className="md:hidden text-foreground"
+          aria-label="Bật/tắt menu"
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Menu mobile */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 bg-background border-b border-border section-padding py-6 md:hidden"
+            className="md:hidden border-t border-border bg-background"
           >
-            <ul className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="max-w-6xl mx-auto px-6 md:px-8 lg:px-10 py-6">
+              <ul className="flex flex-col gap-4">
+                {navItems.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -17,23 +17,20 @@ const DemoSection = () => {
           transition={{ duration: 0.8 }}
         >
           <span className="inline-block gradient-secondary text-secondary-foreground px-4 py-1.5 rounded-full text-sm font-semibold mb-6 font-display">
-            Example Sign
+            Ví dụ ký hiệu
           </span>
           <h2 className="text-4xl md:text-6xl font-extrabold text-foreground mb-4">
-            "Hello"
+            "Xin chào"
           </h2>
-          <p className="text-lg text-muted-foreground mb-2 font-body">
-            <span className="font-semibold text-foreground">Meaning:</span> Hello = Xin chào
-          </p>
           <p className="text-muted-foreground mb-8 font-body">
-            A simple wave from beside your forehead, moving outward — the universal sign for hello.
+            Một cái vẫy tay đơn giản từ bên cạnh trán, hướng ra phía trước — đây là ký hiệu phổ biến cho lời chào.
           </p>
           <Button
             variant="default"
             size="lg"
             onClick={() => setShowDemo(!showDemo)}
           >
-            {showDemo ? "Hide Sign" : "Try this sign"}
+            {showDemo ? "Ẩn ký hiệu" : "Thử ký hiệu này"}
           </Button>
         </motion.div>
 
@@ -46,7 +43,7 @@ const DemoSection = () => {
           <div className="rounded-3xl overflow-hidden shadow-lg">
             <img
               src={helloSign}
-              alt="Hello sign demonstration"
+              alt="Minh họa ký hiệu xin chào"
               className="w-full h-[400px] md:h-[500px] object-cover"
             />
           </div>
@@ -58,7 +55,7 @@ const DemoSection = () => {
             >
               <div className="text-center text-primary-foreground">
                 <p className="text-6xl mb-4">👋</p>
-                <p className="text-2xl font-bold font-display">Wave from your forehead outward!</p>
+                <p className="text-2xl font-bold font-display">Vẫy tay từ trán ra phía trước!</p>
               </div>
             </motion.div>
           )}

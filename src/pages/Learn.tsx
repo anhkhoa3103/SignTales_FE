@@ -54,6 +54,7 @@ const Learn = () => {
           <motion.div {...fadeUp} transition={{ duration: 0.5 }}>
             <h1 className="text-3xl font-extrabold text-foreground tracking-tight">Lộ trình học tập</h1>
             <p className="text-muted-foreground font-body text-base mt-1">Làm chủ ngôn ngữ ký hiệu từng bước một</p>
+
           </motion.div>
 
           <div className="space-y-12">

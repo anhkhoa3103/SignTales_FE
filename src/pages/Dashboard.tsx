@@ -11,6 +11,7 @@ const categories = [
   { name: "Bạn bè", emoji: "🤝", signs: 10, color: "from-pink-500 to-rose-400" },
   { name: "Trường học", emoji: "📚", signs: 15, color: "from-emerald-500 to-green-400" },
   { name: "Giao tiếp", emoji: "💬", signs: 20, color: "from-blue-500 to-cyan-400" },
+\
 ];
 
 const fadeUp = {
@@ -27,13 +28,14 @@ const Dashboard = () => {
           <div>
             <h1 className="text-3xl font-extrabold text-foreground tracking-tight">Chào mừng quay trở lại! 👋</h1>
             <p className="text-muted-foreground font-body text-base mt-1">Hôm nay bạn muốn học thêm ký hiệu nào?</p>
+
           </div>
           <Link to="/profile" className="hidden sm:block">
             <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg hover:scale-105 transition-transform">
               S
             </div>
           </Link>
-        </motion.div>
+        </motion.div> 
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
            {/* Continue Learning - Main Action */}

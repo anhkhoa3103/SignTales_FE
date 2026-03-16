@@ -5,18 +5,18 @@ import { Eye, Hand, Gamepad2 } from "lucide-react";
 const cards = [
   {
     icon: Eye,
-    title: "Watch",
-    description: "Learn signs by watching clear visual demonstrations.",
+    title: "Quan sát",
+    description: "Học các ký hiệu bằng cách xem những minh họa trực quan rõ ràng.",
   },
   {
     icon: Hand,
-    title: "Practice",
-    description: "Practice gestures step by step.",
+    title: "Luyện tập",
+    description: "Thực hành từng cử chỉ theo từng bước.",
   },
   {
     icon: Gamepad2,
-    title: "Play",
-    description: "Learn faster with fun mini-games.",
+    title: "Vui chơi",
+    description: "Học nhanh hơn với các trò chơi nhỏ thú vị.",
   },
 ];
 
@@ -32,7 +32,7 @@ const HowItWorksSection = () => {
           transition={{ duration: 0.8 }}
           className="text-3xl md:text-5xl font-extrabold text-foreground text-center mb-16"
         >
-          How It Works
+          Cách hoạt động
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-8">
