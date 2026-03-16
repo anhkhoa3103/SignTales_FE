@@ -11,7 +11,6 @@ const categories = [
   { name: "Bạn bè", emoji: "🤝", signs: 10, color: "from-pink-500 to-rose-400" },
   { name: "Trường học", emoji: "📚", signs: 15, color: "from-emerald-500 to-green-400" },
   { name: "Giao tiếp", emoji: "💬", signs: 20, color: "from-blue-500 to-cyan-400" },
-\
 ];
 
 const fadeUp = {
