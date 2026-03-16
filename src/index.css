@@ -125,6 +125,14 @@
       hsl(220 20% 7% / 0.7) 100%
     );
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 html {
