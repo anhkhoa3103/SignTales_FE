@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronRight, Lightbulb, BookOpen, Trophy, Target } from "lucide-react";
+import { ChevronRight, Lightbulb, BookOpen, Trophy, Target, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -101,7 +101,23 @@ const Dashboard = () => {
           </motion.div>
 
           {/* Daily Goal & Streak Summary */}
-          <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }} className="space-y-4">
+          <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }} className="space-y-6">
+            {/* Premium CTA Banner */}
+            <Link to="/pricing">
+              <Card className="bg-primary border-none shadow-lg shadow-primary/20 overflow-hidden relative group cursor-pointer hover:scale-[1.02] transition-transform">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-white/20 transition-colors" />
+                <CardContent className="p-5 flex items-center gap-4 relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-md">
+                    <Star className="w-6 h-6 text-white fill-white" />
+                  </div>
+                  <div>
+                    <p className="text-white font-black text-lg">Mở khóa Premium</p>
+                    <p className="text-white/80 text-xs font-medium">Học không giới hạn & Không quảng cáo</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
               <Target className="w-5 h-5 text-primary" />
               Mục tiêu hôm nay

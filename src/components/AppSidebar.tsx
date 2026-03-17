@@ -11,9 +11,10 @@ import {
   SidebarGroupLabel,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import { LogOut } from "lucide-react";
+import { LogOut, Star } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
 
 import homeIcon from "@/assets/home.png";
 import learnIcon from "@/assets/learn.png";
@@ -97,7 +98,22 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-4">
+      <SidebarFooter className="p-4 space-y-4">
+        <Link to="/pricing" className="group-data-[collapsible=icon]:hidden">
+          <Card className="bg-primary/5 border-primary/20 hover:bg-primary/10 transition-colors cursor-pointer overflow-hidden relative group">
+            <div className="absolute -right-2 -top-2 w-12 h-12 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors" />
+            <CardContent className="p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+                <Star className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-foreground truncate">Nâng cấp Pro</p>
+                <p className="text-[11px] text-muted-foreground truncate">Mở khóa tất cả bài học</p>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
