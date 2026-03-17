@@ -332,11 +332,11 @@ const Explore = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 md:p-4"
+              className="fixed inset-0 z-[100] bg-transparent flex items-center justify-center p-0 md:p-4"
             >
               <button
                 onClick={() => setSelectedShort(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 text-white z-[120] bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors backdrop-blur-md"
+                className="absolute top-4 right-4 md:top-6 md:right-6 text-black z-[120] bg-black/10 p-2 rounded-full hover:bg-black/20 transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>

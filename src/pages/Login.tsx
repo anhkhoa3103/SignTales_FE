@@ -20,17 +20,31 @@ const Login = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate API call
+
     setTimeout(() => {
+      // ✅ Mock account check
+      if (email === "vodoanbo@gmail.com" && password === "1") {
+        login(email);
+        setIsLoading(false);
+
+        toast({
+          title: "Đăng nhập thành công!",
+          description: "Chào mừng bạn (mock account).",
+        });
+
+        navigate("/onboarding"); // 👉 go to onboard
+        return;
+      }
+
+      // ❌ Default login flow
       login(email);
       setIsLoading(false);
-      
+
       toast({
         title: "Đăng nhập thành công!",
         description: "Chào mừng bạn đã quay trở lại với SignTales.",
       });
-      
+
       navigate("/dashboard");
     }, 1500);
   };
@@ -50,8 +64,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 md:section-padding relative">
-      <Link 
-        to="/" 
+      <Link
+        to="/"
         className="absolute top-8 left-8 flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
       >
         <ArrowLeft size={16} />
@@ -129,9 +143,9 @@ const Login = () => {
               </div>
             </div>
 
-            <Button 
-              variant="outline" 
-              className="w-full bg-background/50" 
+            <Button
+              variant="outline"
+              className="w-full bg-background/50"
               onClick={handleGoogleLogin}
               disabled={isLoading}
             >
