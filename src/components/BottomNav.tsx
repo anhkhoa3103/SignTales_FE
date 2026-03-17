@@ -8,7 +8,12 @@ const items = [
   { to: "/practice", icon: Gamepad2, label: "Luyện tập" },
   { to: "/explore", icon: Users, label: "Khám phá" },
   { to: "/leaderboard", icon: Trophy, label: "BXH" },
-  { to: "/profile", icon: User, label: "Cá nhân" },
+  { 
+    to: "/profile", 
+    icon: "/profile picture/z7630111933759_2f66afa9ffd139109946c5980f448bd7.jpg", 
+    label: "Cá nhân",
+    isImage: true 
+  },
 ];
 
 const BottomNav = () => {
@@ -26,7 +31,15 @@ const BottomNav = () => {
               )
             }
           >
-            <item.icon className="w-5 h-5" />
+            {item.isImage ? (
+              <img 
+                src={item.icon as string} 
+                alt={item.label} 
+                className="w-6 h-6 rounded-full object-cover" 
+              />
+            ) : (
+              <item.icon className="w-5 h-5" />
+            )}
             <span className="text-[15px] font-body font-semibold">{item.label}</span>
           </NavLink>
         ))}

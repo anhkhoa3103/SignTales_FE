@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Settings, ChevronRight, BookOpen, Trophy, Clock, Star } from "lucide-react";
+import { Settings, ChevronRight, BookOpen, Trophy, Clock, Star, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ const menuItems = [
   { icon: BookOpen, label: "Lịch sử học", to: "/progress" },
   { icon: Trophy, label: "Thành tích", to: "/progress" },
   { icon: Star, label: "Dấu hiệu đã lưu", to: "/learn" },
+  { icon: CreditCard, label: "Nâng cấp gói (Bán theo gói)", to: "/pricing" },
   { icon: Settings, label: "Cài đặt", to: "#" },
 ];
 
@@ -22,11 +23,20 @@ const Profile = () => {
       <div className="max-w-2xl mx-auto space-y-8">
         {/* Phần đầu hồ sơ */}
         <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center">
-          <div className="w-24 h-24 rounded-full gradient-primary flex items-center justify-center text-primary-foreground text-4xl font-bold mx-auto mb-4">
-            S
+          <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-4 border-primary/20 shadow-xl">
+            <img 
+              src="/profile picture/z7630111933759_2f66afa9ffd139109946c5980f448bd7.jpg" 
+              alt="Profile" 
+              className="w-full h-full object-cover"
+            />
           </div>
-          <h1 className="text-2xl font-extrabold text-foreground">Học viên</h1>
-          <p className="text-muted-foreground text-sm font-body">Mới bắt đầu · Cấp độ 1</p>
+          <h1 className="text-2xl font-extrabold text-foreground">Võ Đoan Bò</h1>
+          <div className="flex items-center justify-center gap-2 mt-1">
+            <span className="bg-muted text-muted-foreground text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+              Gói Miễn phí
+            </span>
+            <p className="text-muted-foreground text-sm font-body">Mới bắt đầu · Cấp độ 0</p>
+          </div>
           <div className="flex items-center justify-center gap-6 mt-4">
             <div className="text-center">
               <p className="text-lg font-bold text-foreground">24</p>

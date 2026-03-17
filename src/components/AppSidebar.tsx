@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -9,7 +9,11 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
+import { LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 import homeIcon from "@/assets/home.png";
 import learnIcon from "@/assets/learn.png";
@@ -26,11 +30,23 @@ const navItems = [
   { to: "/explore", icon: exploreIcon, label: "Khám phá" },
   { to: "/leaderboard", icon: leaderboardIcon, label: "Bảng xếp hạng" },
   { to: "/progress", icon: progressIcon, label: "Tiến độ" },
-  { to: "/profile", icon: profileIcon, label: "Cá nhân" },
+  { to: "/profile", icon: "/profile picture/z7630111933759_2f66afa9ffd139109946c5980f448bd7.jpg", label: "Profile" },
 ];
 
 export function AppSidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+  const { toast } = useToast();
+
+  const handleLogout = () => {
+    logout();
+    toast({
+      title: "Đã đăng xuất",
+      description: "Hẹn gặp lại bạn sớm!",
+    });
+    navigate("/");
+  };
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border/50">
@@ -80,6 +96,23 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter className="p-4">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton 
+              onClick={handleLogout}
+              tooltip="Đăng xuất"
+              className="py-6 text-destructive hover:text-destructive hover:bg-destructive/10"
+            >
+              <div className="flex items-center gap-3">
+                <LogOut className="w-5 h-5 shrink-0" />
+                <span className="font-medium group-data-[collapsible=icon]:hidden">Đăng xuất</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }

@@ -35,8 +35,12 @@ const Dashboard = () => {
           </div>
 
           <Link to="/profile" className="hidden sm:block">
-            <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg hover:scale-105 transition-transform">
-              S
+            <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform border-2 border-primary/20">
+              <img 
+                src="/profile picture/z7630111933759_2f66afa9ffd139109946c5980f448bd7.jpg" 
+                alt="Profile" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </Link>
         </motion.div>

@@ -5,24 +5,53 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const { login } = useAuth();
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would handle registration here
-    console.log("Signing up with:", { name, email, password });
-    // After sign up, take them to onboarding to complete their profile
-    navigate("/onboarding");
+    setIsLoading(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      login(email, name);
+      setIsLoading(false);
+      
+      toast({
+        title: "Tạo tài khoản thành công!",
+        description: "Chào mừng bạn đến với SignTales. Hãy hoàn tất hồ sơ của bạn.",
+      });
+      
+      // After sign up, take them to onboarding to complete their profile
+      navigate("/onboarding");
+    }, 1500);
+  };
+
+  const handleGoogleSignUp = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      login("google-user@gmail.com", "Google User");
+      setIsLoading(false);
+      toast({
+        title: "Đăng ký thành công!",
+        description: "Bạn đã đăng ký bằng tài khoản Google.",
+      });
+      navigate("/onboarding");
+    }, 1200);
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center section-padding relative">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 md:section-padding relative">
       <Link 
         to="/" 
         className="absolute top-8 left-8 flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -49,8 +78,8 @@ const SignUp = () => {
               Nhập thông tin bên dưới để tạo tài khoản và bắt đầu học
             </CardDescription>
           </CardHeader>
-          <form onSubmit={handleSignUp}>
-            <CardContent className="space-y-4">
+          <CardContent className="space-y-4">
+            <form onSubmit={handleSignUp} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Họ và tên</Label>
                 <Input
@@ -61,6 +90,7 @@ const SignUp = () => {
                   onChange={(e) => setName(e.target.value)}
                   required
                   className="bg-background/50"
+                  disabled={isLoading}
                 />
               </div>
               <div className="space-y-2">
@@ -73,6 +103,7 @@ const SignUp = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="bg-background/50"
+                  disabled={isLoading}
                 />
               </div>
               <div className="space-y-2">
@@ -85,27 +116,57 @@ const SignUp = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className="bg-background/50"
+                  disabled={isLoading}
                 />
               </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                Bằng cách tiếp tục, bạn đồng ý với{" "}
-                <a href="#" className="underline underline-offset-4 hover:text-primary">Điều khoản Dịch vụ</a>{" "}
-                và{" "}
-                <a href="#" className="underline underline-offset-4 hover:text-primary">Chính sách Bảo mật</a>.
-              </p>
-            </CardContent>
-            <CardFooter className="flex flex-col space-y-4">
-              <Button type="submit" className="w-full" size="lg">
-                Tạo tài khoản
+              <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Đang tạo tài khoản...
+                  </>
+                ) : (
+                  "Tạo tài khoản"
+                )}
               </Button>
-              <div className="text-center text-sm text-muted-foreground">
-                Đã có tài khoản?{" "}
-                <Link to="/login" className="font-medium text-primary hover:underline">
-                  Đăng nhập
-                </Link>
+            </form>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-border" />
               </div>
-            </CardFooter>
-          </form>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">Hoặc tiếp tục với</span>
+              </div>
+            </div>
+
+            <Button 
+              variant="outline" 
+              className="w-full bg-background/50" 
+              onClick={handleGoogleSignUp}
+              disabled={isLoading}
+            >
+              <svg className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                <path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+              </svg>
+              Google
+            </Button>
+
+            <p className="text-xs text-center text-muted-foreground">
+              Bằng cách tiếp tục, bạn đồng ý với{" "}
+              <a href="#" className="underline underline-offset-4 hover:text-primary">Điều khoản Dịch vụ</a>{" "}
+              và{" "}
+              <a href="#" className="underline underline-offset-4 hover:text-primary">Chính sách Bảo mật</a>.
+            </p>
+          </CardContent>
+          <CardFooter className="flex flex-col space-y-4 pt-0">
+            <div className="text-center text-sm text-muted-foreground">
+              Đã có tài khoản?{" "}
+              <Link to="/login" className="font-medium text-primary hover:underline">
+                Đăng nhập
+              </Link>
+            </div>
+          </CardFooter>
         </Card>
       </motion.div>
     </div>

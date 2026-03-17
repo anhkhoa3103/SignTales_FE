@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-sign.jpg";
+import { useAuth } from "@/hooks/useAuth";
 
 const HeroSection = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <section
       id="home"
@@ -43,9 +46,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Link to="/onboarding">
+          <Link to={isAuthenticated ? "/dashboard" : "/signup"}>
             <Button variant="hero" size="xl">
-              Bắt đầu học
+              {isAuthenticated ? "Vào học ngay" : "Bắt đầu học"}
             </Button>
           </Link>
 
