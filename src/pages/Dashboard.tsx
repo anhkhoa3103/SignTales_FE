@@ -62,12 +62,15 @@ const Dashboard = () => {
               <Card className="bg-card border-2 border-primary/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden rounded-3xl">
                 <CardContent className="p-0">
                   <div className="flex flex-col sm:flex-row">
-                    <div className="sm:w-48 h-48 bg-primary/5 flex items-center justify-center overflow-hidden">
-                      <img
-                        src={helloSign}
-                        alt="Ký hiệu xin chào"
-                        className="w-28 h-28 object-contain group-hover:scale-110 transition-transform duration-500"
+                    <div className="sm:w-48 h-48 bg-primary/5 flex items-center justify-center overflow-hidden relative">
+                      <video
+                        src="/Tutorial video/chao.mp4"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        muted
+                        playsInline
+                        preload="metadata"
                       />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                     </div>
 
                     <div className="flex-1 p-6 flex flex-col justify-center">
