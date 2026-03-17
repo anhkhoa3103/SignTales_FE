@@ -13,21 +13,23 @@ const lessonData: Record<string, { word: string; meaning: string; example: strin
     meaning: "Lời chào khi gặp ai đó", 
     example: "Xin chào! Rất vui được gặp bạn.", 
     emoji: "👋",
-    video: "/Tutorial video/7625741221388.mp4",
+    video: "/Tutorial video/chao.mp4",
     description: '"Xin chào" thường được thể hiện bằng cách giơ một hoặc hai tay lên (lòng bàn tay hướng về phía trước hoặc hơi nghiêng) và vẫy nhẹ, tương tự động tác vẫy tay chào thông thường, thường kèm theo nụ cười thân thiện.'
   },
   "2": { 
     word: "Cảm ơn", 
     meaning: "Lời bày tỏ sự biết ơn", 
     example: "Cảm ơn bạn đã giúp mình.", 
-    emoji: "🙏" 
+    emoji: "🙏",
+    video: "/Tutorial video/cam_on.mp4",
+    description: '"Cảm ơn" thường được thể hiện bằng cách đặt hai tay lại với nhau (giống như động tác cầu nguyện) trước ngực, sau đó nhẹ nhàng đưa tay ra phía trước và hơi lên trên, kết hợp với ánh mắt chân thành và nụ cười nhẹ để thể hiện sự biết ơn sâu sắc.'
   },
   "3": { 
     word: "Xin lỗi", 
     meaning: "Lời xin lỗi khi mắc lỗi", 
     example: "Mình xin lỗi vì đã đến muộn.", 
     emoji: "😔",
-    video: "/Tutorial video/7625741213414.mp4",
+    video: "/Tutorial video/xin_loi.mp4",
     description: '"xin lỗi" thường được thể hiện bằng cách nắm nhẹ bàn tay lại, úp xuống, đặt trước ngực và xoay nhẹ nhàng. Ký hiệu này kết hợp với biểu cảm gương mặt chân thành (nhíu mày nhẹ, ánh mắt hối lỗi) để thể hiện sự hối hận và cầu mong được tha thứ.'
   },
 };

@@ -22,7 +22,7 @@ const GlobalFactSection = () => {
           initial={{ opacity: 0, x: 40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="rounded-3xl overflow-hidden shadow-lg"
+          className="rounded-3xl overflow-hidden"
         >
           <video
             src={signingVideo}
@@ -30,7 +30,7 @@ const GlobalFactSection = () => {
             loop
             muted
             playsInline
-            className="w-full h-[600px] md:h-[700px] lg:h-[800px] object-cover"
+            className="w-full w-full h-[300px] md:h-[500px] lg:h-[600px] object-cover"
           ></video>
         </motion.div>
       </div>

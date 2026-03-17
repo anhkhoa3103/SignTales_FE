@@ -35,6 +35,7 @@ const CTASection = () => {
             variant="heroOutline"
             size="xl"
             className="border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/20"
+            onClick={() => window.location.href = "/onboarding"}
           >
             Bắt đầu học miễn phí
           </Button>

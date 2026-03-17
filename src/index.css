@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 210 20% 99%;
@@ -46,7 +47,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     --font-display: 'Be Vietnam Pro', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-body: 'Be Vietnam Pro', sans-serif;
 
     --shadow-soft: 0 4px 30px -8px hsl(28 100% 50% / 0.15);
     --shadow-glow: 0 0 40px -10px hsl(28 100% 50% / 0.3);

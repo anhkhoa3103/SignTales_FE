@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gamepad2, Zap, Trophy, RotateCcw, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,13 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 // Dữ liệu trò chơi ghi nhớ
 const memoryPairs = [
-  { sign: "👋", meaning: "Xin chào" },
-  { sign: "🙏", meaning: "Cảm ơn" },
-  { sign: "😔", meaning: "Xin lỗi" },
-  { sign: "❤️", meaning: "Yêu" },
-  { sign: "👍", meaning: "Đúng" },
-
-  { sign: "✋", meaning: "Tạm biệt" },
+  { sign: "/Tutorial video/chao.mp4", meaning: "Xin chào" },
+  { sign: "/Tutorial video/cam_on.mp4", meaning: "Cảm ơn" },
+  { sign: "/Tutorial video/xin_loi.mp4", meaning: "Xin lỗi" },
 ];
 
 type MemoryCard = {
@@ -36,11 +32,9 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 const speedQuizSigns = [
-  { sign: "👋", answer: "Xin chào", options: ["Xin chào", "Tạm biệt", "Xin lỗi"] },
-  { sign: "🙏", answer: "Cảm ơn", options: ["Làm ơn", "Cảm ơn", "Giúp đỡ"] },
-  { sign: "❤️", answer: "Yêu", options: ["Yêu", "Vui vẻ", "Bạn bè"] },
-  { sign: "👍", answer: "Đúng", options: ["Sai", "Đúng", "Có lẽ"] },
-  { sign: "😔", answer: "Xin lỗi", options: ["Buồn", "Xin lỗi", "Giận dữ"] },
+  { sign: "/Tutorial video/chao.mp4", answer: "Xin chào", options: ["Xin chào", "Tạm biệt", "Xin lỗi"] },
+  { sign: "/Tutorial video/cam_on.mp4", answer: "Cảm ơn", options: ["Làm ơn", "Cảm ơn", "Giúp đỡ"] },
+  { sign: "/Tutorial video/xin_loi.mp4", answer: "Xin lỗi", options: ["Buồn", "Xin lỗi", "Giận dữ"] },
 ];
 
 const leaderboard = [
@@ -109,6 +103,7 @@ function MemoryGame({ onBack }: { onBack: () => void }) {
   const [cards, setCards] = useState<MemoryCard[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matches, setMatches] = useState(0);
+  const videoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
 
   useEffect(() => {
     const allCards: MemoryCard[] = shuffleArray(
@@ -126,6 +121,7 @@ function MemoryGame({ onBack }: { onBack: () => void }) {
       const card = cards.find((c) => c.id === id);
       if (!card || card.matched || prev.includes(id)) return prev;
       const next = [...prev, id];
+
       if (next.length === 2) {
         const [a, b] = next.map((fid) => cards.find((c) => c.id === fid)!);
         if (a.pairId === b.pairId) {
@@ -143,7 +139,18 @@ function MemoryGame({ onBack }: { onBack: () => void }) {
   }, [cards]);
 
   const won = matches === memoryPairs.length;
-
+  useEffect(() => {
+    flipped.forEach((id) => {
+      const card = cards.find((c) => c.id === id);
+      if (card?.type === "sign") {
+        const video = videoRefs.current[id];
+        if (video) {
+          video.currentTime = 0;
+          video.play().catch(() => { });
+        }
+      }
+    });
+  }, [flipped, cards]);
   return (
     <motion.div key="memory" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6">
       <div className="flex items-center justify-between bg-muted/30 p-4 rounded-xl">
@@ -167,16 +174,29 @@ function MemoryGame({ onBack }: { onBack: () => void }) {
               whileTap={{ scale: 0.95 }}
               onClick={() => handleFlip(card.id)}
               className={cn(
-                "aspect-square rounded-2xl flex items-center justify-center cursor-pointer text-lg font-bold transition-all duration-300 shadow-sm",
+                "aspect-square rounded-2xl flex items-center justify-center cursor-pointer text-lg font-bold transition-all duration-300 shadow-sm overflow-hidden",
                 card.matched
                   ? "bg-primary text-white"
                   : flipped.includes(card.id)
-                  ? "bg-card border-2 border-primary text-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    ? "bg-card border-2 border-primary text-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
               )}
             >
               {card.matched || flipped.includes(card.id) ? (
-                <span className={card.type === "sign" ? "text-3xl" : "text-sm text-center px-2"}>{card.content}</span>
+                card.type === "sign" ? (
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[card.id] = el;
+                    }}
+                    src={card.content}
+                    muted
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-sm text-center px-2">{card.content}</span>
+                )
               ) : (
                 "?"
               )}
@@ -194,8 +214,18 @@ function SpeedQuiz({ onBack }: { onBack: () => void }) {
   const [timer, setTimer] = useState(3);
   const [answered, setAnswered] = useState(false);
   const [done, setDone] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const q = speedQuizSigns[qi];
+
+  useEffect(() => {
+    // Play video when question changes
+    if (videoRef.current && !answered && !done) {
+      setTimeout(() => {
+        videoRef.current?.play();
+      }, 50);
+    }
+  }, [qi, answered, done]);
 
   useEffect(() => {
     if (answered || done) return;
@@ -248,9 +278,13 @@ function SpeedQuiz({ onBack }: { onBack: () => void }) {
           key={qi}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="text-8xl mb-6"
+          className="mb-6 w-48 h-48 mx-auto rounded-2xl overflow-hidden bg-muted flex items-center justify-center"
         >
-          {q.sign}
+          <video
+            ref={videoRef}
+            src={q.sign}
+            className="w-full h-full object-cover"
+          />
         </motion.div>
         <div className={cn(
           "text-5xl font-black transition-colors",
