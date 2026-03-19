@@ -23,12 +23,14 @@ import exploreIcon from "@/assets/explore.png";
 import leaderboardIcon from "@/assets/leaderboard.png";
 import progressIcon from "@/assets/progress.png";
 import profileIcon from "@/assets/profile.png";
+import vslIcon from "@/assets/sentences.jpg";
 
 const navItems = [
   { to: "/dashboard", icon: homeIcon, label: "Trang Chính" },
   { to: "/learn", icon: learnIcon, label: "Học tập" },
   { to: "/practice", icon: practiceIcon, label: "Luyện tập" },
   { to: "/explore", icon: exploreIcon, label: "Khám phá" },
+  { to: "/vsl", icon: vslIcon, label: "Ghép câu" },
   { to: "/leaderboard", icon: leaderboardIcon, label: "Bảng xếp hạng" },
   { to: "/progress", icon: progressIcon, label: "Tiến độ" },
   { to: "/profile", icon: "/profile picture/z7630111933759_2f66afa9ffd139109946c5980f448bd7.jpg", label: "Profile" },

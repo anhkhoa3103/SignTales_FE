@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Button } from "@/components/ui/button";
-import helloSignVideo from "../../../public/Tutorial video/chao.mp4";
+import helloSignVideo from "../../../public/tutorial-video/chao.mp4";
 
 const DemoSection = () => {
   const { ref, isInView } = useScrollReveal(0.3);

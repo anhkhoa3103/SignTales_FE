@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 // Dữ liệu trò chơi ghi nhớ
 const memoryPairs = [
-  { sign: "/Tutorial video/chao.mp4", meaning: "Xin chào" },
-  { sign: "/Tutorial video/cam_on.mp4", meaning: "Cảm ơn" },
-  { sign: "/Tutorial video/xin_loi.mp4", meaning: "Xin lỗi" },
+  { sign: "/tutorial-video/chao.mp4", meaning: "Xin chào" },
+  { sign: "/tutorial-video/cam_on.mp4", meaning: "Cảm ơn" },
+  { sign: "/tutorial-video/xin_loi.mp4", meaning: "Xin lỗi" },
 ];
 
 type MemoryCard = {
@@ -32,9 +32,9 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 const speedQuizSigns = [
-  { sign: "/Tutorial video/chao.mp4", answer: "Xin chào", options: ["Xin chào", "Tạm biệt", "Xin lỗi"] },
-  { sign: "/Tutorial video/cam_on.mp4", answer: "Cảm ơn", options: ["Làm ơn", "Cảm ơn", "Giúp đỡ"] },
-  { sign: "/Tutorial video/xin_loi.mp4", answer: "Xin lỗi", options: ["Buồn", "Xin lỗi", "Giận dữ"] },
+  { sign: "/tutorial-video/chao.mp4", answer: "Xin chào", options: ["Xin chào", "Tạm biệt", "Xin lỗi"] },
+  { sign: "/tutorial-video/cam_on.mp4", answer: "Cảm ơn", options: ["Làm ơn", "Cảm ơn", "Giúp đỡ"] },
+  { sign: "/tutorial-video/xin_loi.mp4", answer: "Xin lỗi", options: ["Buồn", "Xin lỗi", "Giận dữ"] },
 ];
 
 const leaderboard = [

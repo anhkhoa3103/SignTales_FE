@@ -21,6 +21,7 @@ import Pricing from "./pages/Pricing";
 import Onboarding from "./pages/Onboarding";
 import About from "./pages/About";
 import AppLayout from "./components/AppLayout";
+import VSLPage from './pages/VSLPage';
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => (
               <Route path="/progress" element={<ProgressPage />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/vsl" element={<VSLPage />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
